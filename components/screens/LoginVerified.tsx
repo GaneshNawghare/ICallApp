@@ -45,32 +45,35 @@ const LoginVerified = ({navigation,route}:any) => {
             }}>
             <LoginImage/>
          </View>
-         <View style={{marginLeft:wp(3),marginTop:hp(4)}}>
+         <View style={{marginLeft:wp(4.5),marginTop:hp(4)}}>
             <Text style={{
                 color:'#36364D',
-                fontFamily:'Raleway',
+                fontFamily:'Lato',
                 fontStyle:'normal',
                 fontWeight:'400',
+                fontSize:wp(3.2),
                 }}>We have sent verification code to your phone number {'\n'}{route.params.number}</Text>
          </View>
          <View>
             <Text style={{
                 marginTop:hp(3),
-                marginLeft:wp(3.2),
+                marginLeft:wp(4.5),
                 fontFamily:'Raleway',
                 fontWeight:'500',
                 fontSize:wp(4),
                 color:'#212126',
                 fontStyle:'normal'
                 }}>OTP Code</Text>
-            <TextInput
-                style={styles.input}
-                onChangeText={onChangeNumber}
-                value={number}
-                placeholder="Enter Verification Code"
-                keyboardType="numeric"
-            />
-            <View style={{marginLeft:wp(70)}}>
+                <View style={{justifyContent:'center',alignItems:'center'}}>
+                  <TextInput
+                  style={styles.input}
+                  onChangeText={onChangeNumber}
+                  value={number}
+                  placeholder="  Enter Verification Code"
+                  keyboardType="numeric"
+                  />
+                </View>
+            <View style={{marginLeft:wp(76)}}>
                 <Text style={{
                     color:'#36364D',
                     fontFamily:'Raleway',
@@ -81,8 +84,8 @@ const LoginVerified = ({navigation,route}:any) => {
             <View style={{alignItems:'center',justifyContent:'center'}}>
                <TouchableOpacity onPress={()=>{loginVerified()}}>
                   <View style={{
-                    width:wp(95),
-                    height:hp(5),
+                    width:wp(90),
+                    height:hp(6),
                     backgroundColor:'#8E97FE',
                     alignItems:'center',
                     justifyContent:'center',
@@ -106,12 +109,16 @@ const LoginVerified = ({navigation,route}:any) => {
 
 const styles=StyleSheet.create({
   input: {
-    height: hp(5),
+    height: hp(6),
     width:wp(90),
-    marginTop:hp(1.5),
-    marginLeft:wp(3),
+    marginTop:hp(1.2),
     borderWidth: wp(0.3),
-    borderRadius:wp(0.4),
+    borderRadius:wp(0.6),
+    fontFamily:'Lato',
+    color:'#999999',
+    fontWeight:'400',
+    fontStyle:'normal',
+    fontSize:wp(3.2)
   },
 })
 

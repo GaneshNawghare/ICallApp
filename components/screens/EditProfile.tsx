@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { View ,Text,TouchableOpacity,StyleSheet,TextInput,KeyboardAvoidingView } from "react-native";
+import { View ,Text,TouchableOpacity,StyleSheet,TextInput} from "react-native";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -38,17 +38,21 @@ const EditProfile = ({navigation,route}:any) => {
                </TouchableOpacity>
                    <Text style={{
                         marginLeft:wp(4),
-                        marginTop:wp(5),
+                        marginTop:wp(6.4),
                         color:'#FCFDFF',
-                        fontSize:wp(8),
+                        fontSize:wp(7),
                         fontWeight:'600',
                         fontStyle:'normal',
                         fontFamily:'Raleway'}}>Edit Profile</Text>
          </View>
          <View>
-            <View style={{justifyContent:'center',alignItems:'center',marginTop:hp(2)}}>
+            <View style={{
+                 justifyContent:'center',
+                 alignItems:'center',
+                 marginTop:hp(2)
+                 }}>
                 <ProfilePage/>
-                    <TouchableOpacity onPress={()=>{navigation.navigate('EditProfile')}}>
+                    <TouchableOpacity onPress={()=>{}}>
                         <View style={{
                             justifyContent:'center',
                             alignItems:'center',
@@ -73,32 +77,32 @@ const EditProfile = ({navigation,route}:any) => {
            <View>
              <View style={{
                 flexDirection:'row',
-                marginLeft:wp(3),
+                marginLeft:wp(5),
                 marginTop:hp(2)}}>
                 <Text style={{
-                     color:'#999999',
-                     fontFamily:'Raleway',
+                     color:'#212126',
+                     fontFamily:'Lato',
                      fontStyle:'normal',
                      fontWeight:'500',
                      fontSize:wp(4.5)
                      }}>Phone Number</Text>
              </View>
-             <KeyboardAvoidingView>
+             <View style={{justifyContent:'center',alignItems:'center'}}>
              <TextInput
                 style={styles.input}
                 onChangeText={onChangeNumber}
                 value={number}
                 placeholder={dataNumber}
                 keyboardType="numeric"
-            />
-            </KeyboardAvoidingView>
+             />
+             </View>
            </View>
        </View>
        <View style={{alignItems:'center',justifyContent:'center'}}>
             <TouchableOpacity onPress={()=>{updateProfile()}}>
                   <View style={{
-                    width:wp(95),
-                    height:hp(5),
+                    width:wp(90),
+                    height:hp(6),
                     backgroundColor:'#8E97FE',
                     alignItems:'center',
                     justifyContent:'center',
@@ -132,10 +136,9 @@ const styles=StyleSheet.create({
       fontSize:wp(5)
     },
     input:{
-    height: hp(5),
+    height: hp(6),
     width:wp(90),
     marginTop:hp(1.5),
-    marginLeft:wp(3),
     borderWidth: wp(0.3),
     borderRadius:wp(0.4),
     },

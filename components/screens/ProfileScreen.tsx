@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import { View ,Text,TouchableOpacity,StyleSheet,Switch } from "react-native";
 import {
   heightPercentageToDP as hp,
@@ -38,12 +38,12 @@ const ProfileScreen = ({navigation}:any) => {
             </TouchableOpacity>
             <Text style={{
               marginLeft:wp(4),
-              marginTop:wp(5),
+              marginTop:wp(6),
               color:'#FCFDFF',
-              fontSize:wp(10),
+              fontSize:wp(8),
               fontWeight:'600',
               fontStyle:'normal',
-              fontFamily:'Raleway'}}>Profile</Text>
+              fontFamily:'Lato'}}>Profile</Text>
          </View>
          <View>
             <View style={{
@@ -53,7 +53,7 @@ const ProfileScreen = ({navigation}:any) => {
                  }}>
                 <ProfilePage/>
                     <TouchableOpacity 
-                        onPress={()=>{navigation.navigate('EditProfile',{number})}}>
+                      onPress={()=>{navigation.navigate('EditProfile',{number})}}>
                     <View style={{
                         justifyContent:'center',
                         alignItems:'center',
@@ -66,7 +66,7 @@ const ProfileScreen = ({navigation}:any) => {
                     <Text style={{
                         color:'#FCFDFF',
                         fontSize:wp(3.5),
-                        fontFamily:'Raleway',
+                        fontFamily:'Lato',
                         fontWeight:'600'
                         }}>Edit Profile</Text>
                     </View>
@@ -81,7 +81,7 @@ const ProfileScreen = ({navigation}:any) => {
                 marginTop:hp(5),
                 fontStyle:'normal',
                 color:'#8E97FE',
-                fontFamily:'Raleway',
+                fontFamily:'Lato',
                 fontSize:wp(5.5),
                 fontWeight:'600'
                 }}>Personal Details</Text>
@@ -92,32 +92,56 @@ const ProfileScreen = ({navigation}:any) => {
                 marginTop:hp(2)}}>
                 <Text style={{
                      color:'#212126',
-                     fontFamily:'Raleway',
+                     fontFamily:'Lato',
                      fontStyle:'normal',
                      fontWeight:'600',
-                     fontSize:wp(5)
-                     }}>Phone Number</Text>
+                     fontSize:wp(4.5)
+                     }}>Phone number</Text>
                 <Text style={{
-                    marginLeft:wp(30),
+                    marginLeft:wp(35),
                     color:'#212126',
-                    fontFamily:'Raleway',
+                    fontFamily:'Lato',
                     fontStyle:'normal',
                     fontWeight:'600',
-                    fontSize:wp(5)
+                    fontSize:wp(4.5)
                     }}>{store.userData}</Text>
              </View>
            </View>
        </View>
+       <View style={{
+                   width:wp(100),
+                   height:hp(0.2),
+                   backgroundColor:'#DFE0EB',
+                   marginTop:hp(3),
+                   }}></View>
        <View>
            <View>
-             <Text style={{marginLeft:wp(4),marginTop:hp(3),fontStyle:'normal',color:'#8E97FE',fontFamily:'Raleway',fontSize:wp(5.5),fontWeight:'600'}}>Notification</Text>
+             <Text style={{
+                 marginLeft:wp(4),
+                 marginTop:hp(1.5),
+                 fontStyle:'normal',
+                 color:'#8E97FE',
+                 fontFamily:'Lato',
+                 fontSize:wp(5.5),
+                 fontWeight:'600'
+                 }}>Notification</Text>
              <View style={[styles.horizontalLine]}></View>
-             <View style={{flexDirection:'row',marginLeft:wp(4),marginTop:hp(2)}}>
-                <Text style={{color:'#212126',fontFamily:'Raleway',fontStyle:'normal',fontWeight:'600',fontSize:wp(5)}}>Do you want Notifications</Text>
-                <View style={styles.container}>
+             <View style={{
+                 flexDirection:'row',
+                 marginLeft:wp(4),
+                 marginTop:hp(2)
+                 }}>
+                <Text style={{
+                  color:'#212126',
+                  fontFamily:'Lato',
+                  fontStyle:'normal',
+                  fontWeight:'600',
+                  fontSize:wp(4.5)
+                  }}>Do you want Notifications</Text>
+                <View style={{marginLeft:wp(28)}}>
                 <Switch
                      trackColor={{false: '#767577', true: '#81b0ff'}}
-                     ios_backgroundColor="#3e3e3e"
+                     ios_backgroundColor="#DFE0EB"
                      onValueChange={toggleSwitch}
                      value={isEnabled}
                 />
@@ -125,14 +149,20 @@ const ProfileScreen = ({navigation}:any) => {
              </View>
            </View>
        </View>
+       <View style={{
+                   width:wp(100),
+                   height:hp(0.2),
+                   backgroundColor:'#DFE0EB',
+                   marginTop:hp(3),
+                   }}></View>
        <View>
            <View>
              <Text style={{
                 marginLeft:wp(4),
-                marginTop:hp(3),
+                marginTop:hp(1.5),
                 fontStyle:'normal',
                 color:'#8E97FE',
-                fontFamily:'Raleway',
+                fontFamily:'Lato',
                 fontSize:wp(5.5),
                 fontWeight:'600'
                 }}>Terms & Conditions</Text>
@@ -141,13 +171,13 @@ const ProfileScreen = ({navigation}:any) => {
                 <View style={{flexDirection:'row'}}>
                 <Text style={[styles.termsAndCondition]}>Privacy Policies</Text>
                 <TouchableOpacity>
-                <ProfilePrivacyArrow style={{marginTop:hp(1.2),marginLeft:wp(50)}}/>
+                <ProfilePrivacyArrow style={{marginTop:hp(1.2),marginLeft:wp(55.5)}}/>
                 </TouchableOpacity>
                 </View>
                 <View style={{flexDirection:'row'}}>
                 <Text style={[{marginTop:hp(2)},styles.termsAndCondition]}>User Terms & Conditions</Text>
                 <TouchableOpacity>
-                <ProfilePrivacyArrow style={{marginTop:hp(3.2),marginLeft:wp(29.3)}}/>
+                <ProfilePrivacyArrow style={{marginTop:hp(3.2),marginLeft:wp(37)}}/>
                 </TouchableOpacity>
                 </View>
              </View>
@@ -174,16 +204,16 @@ const styles=StyleSheet.create({
   },
     termsAndCondition:{
       color:'#212126',
-      fontFamily:'Raleway',
+      fontFamily:'Lato',
       fontStyle:'normal',
       fontWeight:'600',
-      fontSize:wp(5)
+      fontSize:wp(4.5)
     },
     logout:{
       marginTop:hp(5),
       alignItems:'center',
       justifyContent:'center',
-      width:wp(26),
+      width:wp(24),
       height:hp(4),
       borderRadius:wp(0.5),
       backgroundColor:'#8E97FE'

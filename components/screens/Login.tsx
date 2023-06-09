@@ -41,34 +41,36 @@ const Login = ({navigation}:any) => {
          <View>
             <Text style={{
                 marginTop:hp(3),
-                marginLeft:wp(3.2),
-                fontFamily:'Raleway',
+                marginLeft:wp(4.6),
+                fontFamily:'Lato',
                 fontWeight:'500',
                 fontSize:wp(4),
                 color:'#212126',
                 fontStyle:'normal'
                 }}>Phone Number</Text>
-            <TextInput
-                style={styles.input}
-                onChangeText={onChangeNumber}
-                value={number}
-                placeholder="Enter your phone number"
-                keyboardType="numeric"
-            />
+                <View style={{justifyContent:'center',alignItems:'center'}}>
+                   <TextInput
+                     style={styles.input}
+                     onChangeText={onChangeNumber}
+                     value={number}
+                     placeholder="  Enter your phone number"
+                     keyboardType="numeric"
+                   />
+                </View>
             <View style={{alignItems:'center',justifyContent:'center'}}>
                <TouchableOpacity onPress={()=>{loginVerified()}}>
                   <View style={{
-                    width:wp(95),
-                    height:hp(5),
+                    width:wp(90),
+                    height:hp(6),
                     backgroundColor:'#8E97FE',
                     alignItems:'center',
                     justifyContent:'center',
                     borderRadius:wp(1),
-                    marginTop:hp(2),
+                    marginTop:hp(3),
                     }}>
                      <Text style={{
                         color:'#FCFDFF',
-                        fontFamily:'Raleway',
+                        fontFamily:'Lato',
                         fontWeight:'900',
                         fontStyle:'normal',
                         fontSize:wp(4),
@@ -83,12 +85,16 @@ const Login = ({navigation}:any) => {
 
 const styles=StyleSheet.create({
   input: {
-    height: hp(5),
+    height: hp(6),
     width:wp(90),
     marginTop:hp(1.5),
-    marginLeft:wp(3),
     borderWidth: wp(0.3),
     borderRadius:wp(0.4),
+    fontFamily:'Lato',
+    fontWeight:'400',
+    fontStyle:'normal',
+    color:'#999999',
+    fontSize:wp(3.5),
   },
 })
 
