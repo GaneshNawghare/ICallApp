@@ -29,7 +29,7 @@ const LandingScreen =({navigation}:any)=>{
             marginTop:hp(5),
             marginRight:wp(8),
             color:'#292933',
-            fontFamily:'Raleway',
+            fontFamily:'Lato',
         }}/>
         <View style={{marginTop:wp(0.7),marginLeft:wp(8)}}>
           <TouchableOpacity onPress={()=>{LoginOrProfile()}}>
