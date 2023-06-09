@@ -23,7 +23,7 @@ const LoginVerified = ({navigation,route}:any) => {
     <View style={{width:wp(100),height:wp(1000),backgroundColor:'#FFFFFF'}}>
         <View style={{flexDirection:'row'}}>
             <TouchableOpacity onPress={()=>{navigation.goBack()}}>
-            <LoginArrow style={{
+              <LoginArrow style={{
                 marginLeft:wp(4),
                 marginTop:hp(5),
                 fontSize:wp(10),
@@ -36,7 +36,7 @@ const LoginVerified = ({navigation,route}:any) => {
                 fontSize:wp(8),
                 fontWeight:'600',
                 fontStyle:'normal',
-                fontFamily:'Raleway'}}>Login</Text>
+                fontFamily:'Lato'}}>Login</Text>
          </View>
          <View style={{
             marginTop:hp(4),
@@ -58,7 +58,7 @@ const LoginVerified = ({navigation,route}:any) => {
             <Text style={{
                 marginTop:hp(3),
                 marginLeft:wp(4.5),
-                fontFamily:'Raleway',
+                fontFamily:'Lato',
                 fontWeight:'500',
                 fontSize:wp(4),
                 color:'#212126',
@@ -76,7 +76,7 @@ const LoginVerified = ({navigation,route}:any) => {
             <View style={{marginLeft:wp(76)}}>
                 <Text style={{
                     color:'#36364D',
-                    fontFamily:'Raleway',
+                    fontFamily:'Lato',
                     fontSize:wp(3),
                     fontWeight:'400'
                     }}>Resend OTP ?</Text>
@@ -94,7 +94,7 @@ const LoginVerified = ({navigation,route}:any) => {
                     }}>
                      <Text style={{
                         color:'#FCFDFF',
-                        fontFamily:'Raleway',
+                        fontFamily:'Lato',
                         fontWeight:'900',
                         fontStyle:'normal',
                         fontSize:wp(4),

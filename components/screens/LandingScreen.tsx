@@ -39,32 +39,32 @@ const LandingScreen =({navigation}:any)=>{
       </View>
       <View style={{marginTop:hp(3),alignItems:'center',justifyContent:'center'}}>
         <TouchableOpacity>
-        <Sos/>
+          <Sos/>
         </TouchableOpacity>
         <Text style={[styles.imageBottomText]}>Established for maritime use in formal notation SOS is {'\n'}
         with an overscore line,to indicate that the Morse code </Text>
         <View style={[styles.horinzontalLine]}></View>
         <TouchableOpacity>
-        <Content/>
+          <Content/>
         </TouchableOpacity>
         <Text style={[styles.imageBottomText]}>Established for maritime use in formal notation SOS is {'\n'}
         with an overscore line,to indicate that the Morse code </Text>
         <View style={[styles.horinzontalLine]}></View>
         <TouchableOpacity>
-        <SelfAssessment/>
+          <SelfAssessment/>
         </TouchableOpacity>
         <Text style={[styles.imageBottomText]}>Established for maritime use in formal notation SOS is {'\n'}
         with an overscore line,to indicate that the Morse code </Text>
       </View>
       <View style={{marginTop:hp(3.5),flexDirection:'row',alignItems:'center'}}>
         <TouchableOpacity>
-        <ChatLogo style={{marginLeft:wp(18)}}/>
+          <ChatLogo style={{marginLeft:wp(18)}}/>
         </TouchableOpacity>
         <TouchableOpacity>
-        <CallLogo style={{marginLeft:wp(13)}}/>
+          <CallLogo style={{marginLeft:wp(13)}}/>
         </TouchableOpacity>
         <TouchableOpacity>
-        <MessageLogo style={{marginLeft:wp(13)}}/>
+          <MessageLogo style={{marginLeft:wp(13)}}/>
         </TouchableOpacity>
       </View>
       <View style={{flexDirection:'row',alignItems:'center'}}>

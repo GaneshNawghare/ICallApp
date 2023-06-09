@@ -29,7 +29,7 @@ const ProfileScreen = ({navigation}:any) => {
                }}>
          <View style={{flexDirection:'row'}}>
             <TouchableOpacity onPress={()=>{navigation.goBack()}}>
-            <ProfileArrow style={{
+               <ProfileArrow style={{
                  marginLeft:wp(4),
                  marginTop:hp(5),
                  fontSize:wp(10),
@@ -54,22 +54,22 @@ const ProfileScreen = ({navigation}:any) => {
                 <ProfilePage/>
                     <TouchableOpacity 
                       onPress={()=>{navigation.navigate('EditProfile',{number})}}>
-                    <View style={{
-                        justifyContent:'center',
-                        alignItems:'center',
-                        marginTop:hp(2),
-                        width:wp(30),
-                        height:hp(5),
-                        borderColor:'#FCFDFF',
-                        borderWidth:wp(0.3)
-                        }}>
-                    <Text style={{
-                        color:'#FCFDFF',
-                        fontSize:wp(3.5),
-                        fontFamily:'Lato',
-                        fontWeight:'600'
+                      <View style={{
+                         justifyContent:'center',
+                         alignItems:'center',
+                         marginTop:hp(2),
+                         width:wp(30),
+                         height:hp(5),
+                         borderColor:'#FCFDFF',
+                         borderWidth:wp(0.3)
+                          }}>
+                      <Text style={{
+                         color:'#FCFDFF',
+                         fontSize:wp(3.5),
+                         fontFamily:'Lato',
+                         fontWeight:'600'
                         }}>Edit Profile</Text>
-                    </View>
+                      </View>
                     </TouchableOpacity>
             </View>
          </View>
@@ -171,13 +171,13 @@ const ProfileScreen = ({navigation}:any) => {
                 <View style={{flexDirection:'row'}}>
                 <Text style={[styles.termsAndCondition]}>Privacy Policies</Text>
                 <TouchableOpacity>
-                <ProfilePrivacyArrow style={{marginTop:hp(1.2),marginLeft:wp(55.5)}}/>
+                  <ProfilePrivacyArrow style={{marginTop:hp(1.2),marginLeft:wp(55.5)}}/>
                 </TouchableOpacity>
                 </View>
                 <View style={{flexDirection:'row'}}>
                 <Text style={[{marginTop:hp(2)},styles.termsAndCondition]}>User Terms & Conditions</Text>
                 <TouchableOpacity>
-                <ProfilePrivacyArrow style={{marginTop:hp(3.2),marginLeft:wp(37)}}/>
+                  <ProfilePrivacyArrow style={{marginTop:hp(3.2),marginLeft:wp(37)}}/>
                 </TouchableOpacity>
                 </View>
              </View>

@@ -16,7 +16,7 @@ const Login = ({navigation}:any) => {
     <View style={{width:wp(100),height:wp(1000),backgroundColor:'#FFFFFF'}}>
         <View style={{flexDirection:'row'}}>
             <TouchableOpacity onPress={()=>{navigation.goBack()}}>
-            <LoginArrow style={{
+              <LoginArrow style={{
                 marginLeft:wp(4),
                 marginTop:hp(5),
                 fontSize:wp(10),
@@ -29,7 +29,7 @@ const Login = ({navigation}:any) => {
                 fontSize:wp(8),
                 fontWeight:'600',
                 fontStyle:'normal',
-                fontFamily:'Raleway'}}>Login</Text>
+                fontFamily:'Lato'}}>Login</Text>
          </View>
          <View style={{
             marginTop:hp(4),
