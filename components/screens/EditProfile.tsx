@@ -12,7 +12,6 @@ import { setUserData } from '../../redux/Index';
 
 const EditProfile = ({navigation,route}:any) => {
   const dataNumber=JSON.stringify(route.params.number);
-  console.warn(route);
   const dispatch=useDispatch();
   const [number, onChangeNumber] = React.useState('');
   const updateProfile =()=>{
@@ -43,7 +42,9 @@ const EditProfile = ({navigation,route}:any) => {
                         fontSize:wp(7),
                         fontWeight:'600',
                         fontStyle:'normal',
-                        fontFamily:'Raleway'}}>Edit Profile</Text>
+                        fontFamily:'Lato'}}
+                       >Edit Profile
+                   </Text>
          </View>
          <View>
             <View style={{
@@ -65,7 +66,7 @@ const EditProfile = ({navigation,route}:any) => {
                        <Text style={{
                             color:'#FCFDFF',
                             fontSize:wp(3.5),
-                            fontFamily:'Raleway',
+                            fontFamily:'Lato',
                             fontWeight:'600'
                         }}>Change Picture</Text>
                         </View>
@@ -111,7 +112,7 @@ const EditProfile = ({navigation,route}:any) => {
                     }}>
                      <Text style={{
                         color:'#FCFDFF',
-                        fontFamily:'Raleway',
+                        fontFamily:'Lato',
                         fontWeight:'900',
                         fontStyle:'normal',
                         fontSize:wp(4),
@@ -130,7 +131,7 @@ const styles=StyleSheet.create({
   },
     termsAndCondition:{
       color:'#212126',
-      fontFamily:'Raleway',
+      fontFamily:'Lato',
       fontStyle:'normal',
       fontWeight:'600',
       fontSize:wp(5)

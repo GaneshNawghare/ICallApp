@@ -22,22 +22,27 @@ const LandingScreen =({navigation}:any)=>{
     :navigation.navigate('ProfileScreen')
   }
   return (
-    <View style={{backgroundColor:'#F5F5F5'}}>
-      <View style={{marginLeft:wp(5),flexDirection:'row'}}>
-        <Text style={[styles.textCon]}>Choose which content{'\n'}you want to see</Text>
-        <Arrow style={{
-            marginTop:hp(5),
-            marginRight:wp(8),
-            color:'#292933',
-            fontFamily:'Lato',
-        }}/>
-        <View style={{marginTop:wp(0.7),marginLeft:wp(8)}}>
+    <View style={{backgroundColor:'#F5F5F5',width:wp(100),height:hp(100)}}>
+      <View style={{flex:1,flexDirection:'row',marginLeft:wp(5)}}>
+        <View style={{flex:2,marginTop:hp(1.2)}}>
+          <Text style={[styles.textCon]}>Choose which content</Text>
+          <View style={{flexDirection:'row'}}>
+            <Text style={[styles.textCon]}>you want to see</Text>
+            <Arrow style={{
+              marginTop:hp(1.2),
+              marginLeft:wp(5.5),
+              color:'#292933',
+              fontFamily:'Lato',
+            }}/>
+          </View>
+        </View>
+        <View style={{flex:1,marginTop:hp(3)}}>
           <TouchableOpacity onPress={()=>{LoginOrProfile()}}>
-             <ProfileLogo style={{ marginTop:wp(5)}}/>
+             <ProfileLogo style={{marginLeft:wp(15)}}/>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{marginTop:hp(3),alignItems:'center',justifyContent:'center'}}>
+      <View style={{marginBottom:hp(0.5),alignItems:'center',justifyContent:'center'}}>
         <TouchableOpacity>
           <Sos/>
         </TouchableOpacity>
@@ -56,7 +61,7 @@ const LandingScreen =({navigation}:any)=>{
         <Text style={[styles.imageBottomText]}>Established for maritime use in formal notation SOS is {'\n'}
         with an overscore line,to indicate that the Morse code </Text>
       </View>
-      <View style={{marginTop:hp(3.5),flexDirection:'row',alignItems:'center'}}>
+      <View style={{marginTop:hp(2.2),flexDirection:'row',alignItems:'center'}}>
         <TouchableOpacity>
           <ChatLogo style={{marginLeft:wp(18)}}/>
         </TouchableOpacity>
@@ -67,7 +72,7 @@ const LandingScreen =({navigation}:any)=>{
           <MessageLogo style={{marginLeft:wp(13)}}/>
         </TouchableOpacity>
       </View>
-      <View style={{flexDirection:'row',alignItems:'center'}}>
+      <View style={{marginBottom:hp(2),flexDirection:'row',alignItems:'center'}}>
         <Text style={[{marginLeft:wp(20)},styles.bottomText]}>Chat</Text>
         <Text style={[{marginLeft:wp(18.5)},styles.bottomText]}>Call</Text>
         <Text style={[{marginLeft:wp(17)},styles.bottomText]}>Email</Text>
@@ -78,10 +83,12 @@ const LandingScreen =({navigation}:any)=>{
 
 const styles=StyleSheet.create({
  textCon:{
-    fontSize:wp(6),
+    marginLeft:wp(1.3),
+    fontSize:wp(5.3),
     fontWeight:'600',
     color:'#292933',
-    fontFamily:'Raleway',
+    fontStyle:'normal',
+    fontFamily:'Lato',
  },
  horinzontalLine:{
     marginTop:hp(2),
@@ -92,15 +99,16 @@ const styles=StyleSheet.create({
     marginLeft:wp(2)
  },
  imageBottomText:{
+    marginTop:hp(0.4),
     color:'#36364D',
-    fontFamily:'Raleway'
+    fontFamily:'Lato'
  },
  textImages:{
     color:'#36364D',
-    fontFamily:'Raleway',
+    fontFamily:'Lato',
  },
  bottomText:{
-    fontFamily:'Raleway',
+    fontFamily:'Lato',
     color:'#353D6C',
     fontStyle:'normal'
  }

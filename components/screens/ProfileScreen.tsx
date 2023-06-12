@@ -9,6 +9,7 @@ import ProfilePage from '../assests/svg/ProfilePage';
 import ProfilePrivacyArrow from '../assests/svg/ProfilePrivacyArrow';
 import {useDispatch, useSelector} from 'react-redux';
 import { removeUserData } from '../../redux/Index';
+import ToggleSwitch from 'toggle-switch-react-native';
 
 const ProfileScreen = ({navigation}:any) => {
     const [isEnabled, setIsEnabled] = useState(false);
@@ -90,21 +91,8 @@ const ProfileScreen = ({navigation}:any) => {
                 flexDirection:'row',
                 marginLeft:wp(4),
                 marginTop:hp(2)}}>
-                <Text style={{
-                     color:'#212126',
-                     fontFamily:'Lato',
-                     fontStyle:'normal',
-                     fontWeight:'600',
-                     fontSize:wp(4.5)
-                     }}>Phone number</Text>
-                <Text style={{
-                    marginLeft:wp(35),
-                    color:'#212126',
-                    fontFamily:'Lato',
-                    fontStyle:'normal',
-                    fontWeight:'600',
-                    fontSize:wp(4.5)
-                    }}>{store.userData}</Text>
+                <Text style={[styles.phoneNumberText]}>Phone number</Text>
+                <Text style={[styles.phoneNumberText,{marginLeft:wp(36)}]}>{store.userData}</Text>
              </View>
            </View>
        </View>
@@ -139,11 +127,13 @@ const ProfileScreen = ({navigation}:any) => {
                   fontSize:wp(4.5)
                   }}>Do you want Notifications</Text>
                 <View style={{marginLeft:wp(28)}}>
-                <Switch
-                     trackColor={{false: '#767577', true: '#81b0ff'}}
-                     ios_backgroundColor="#DFE0EB"
-                     onValueChange={toggleSwitch}
-                     value={isEnabled}
+                <ToggleSwitch
+                  isOn={isEnabled}
+                  onColor="#8E97FE"
+                  offColor="#DFE0EB"
+                  labelStyle={[styles.switch]}
+                  //size="small"
+                  onToggle={toggleSwitch => setIsEnabled(toggleSwitch)}
                 />
                 </View>
              </View>
@@ -202,12 +192,25 @@ const styles=StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  phoneNumberText:{
+    color:'#212126',
+    fontFamily:'Lato',
+    fontStyle:'normal',
+    fontWeight:'600',
+    fontSize:wp(4.5)
+  },
     termsAndCondition:{
       color:'#212126',
       fontFamily:'Lato',
       fontStyle:'normal',
       fontWeight:'600',
       fontSize:wp(4.5)
+    },
+    switch:{
+      color: "black",
+      fontWeight: "600" ,
+      fontSize:wp(30),
+      position:'absolute',
     },
     logout:{
       marginTop:hp(5),

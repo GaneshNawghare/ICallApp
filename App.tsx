@@ -9,7 +9,6 @@ import React from 'react'
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SplashScreen from './components/screens/SplashScreen';
-import { enableScreens } from 'react-native-screens';
 import LandingScreen from './components/screens/LandingScreen';
 import ProfileScreen from './components/screens/ProfileScreen';
 import Login from './components/screens/Login';
@@ -18,9 +17,6 @@ import EditProfile from './components/screens/EditProfile';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './redux/Index';
-
-
-enableScreens(true);
 
 const Stack = createNativeStackNavigator();
 
