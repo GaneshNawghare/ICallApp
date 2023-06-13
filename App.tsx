@@ -19,6 +19,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './redux/Index';
 import Sos from './components/screens/sos/Sos';
 import Content from './components/screens/content/Content';
+import Anxiety from './components/screens/sos/Anxiety';
+import InnerPage from './components/screens/sos/InnerPage';
+import ContentInner from './components/screens/content/ContentInner';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +42,9 @@ const Routing = () =>{
         <Stack.Screen name="EditProfile" component={EditProfile}/>
         <Stack.Screen name="Sos" component={Sos}/>
         <Stack.Screen name="Content" component={Content}/>
+        <Stack.Screen name="Anxiety" component={Anxiety}/>
+        <Stack.Screen name="ContentInner" component={ContentInner}/>
+        <Stack.Screen name="InnerPage" component={InnerPage}/>
       </Stack.Navigator>
    </NavigationContainer>
   )

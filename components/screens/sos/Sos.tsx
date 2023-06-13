@@ -24,53 +24,52 @@ const Sos = ({navigation}:any) => {
         {
           id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
           title: 'Anxiety',
-          dcolor:'#E6672D'
+          color:'#E6672D',
+          picturelink:require('./jpg/shutterstock_578702251_(1)_29.png'),
         },
         {
           id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
           title: 'Depression',
-          dcolor:'#F9CF7D'
+          color:'#F9CF7D',
+          picturelink:require('./jpg/shutterstock_578702251_(1)_33.png'),
         },
         {
           id: '58694a0f-3da1-471f-bd96-145571e29d72',
           title: 'Disorder',
-          dcolor:'#6AB58E'
+          color:'#6AB58E',
+          picturelink:require('./jpg/shutterstock_578702251_(1)_34.png'),
         },
         {
             id: '58694a0f-3da1-471f-bd96-145571e29d712',
             title: 'Suicide',
-            dcolor:'#8E97FE'
+            color:'#8E97FE',
+            picturelink:require('./jpg/shutterstock_578702251_(1)_35.png'),
         },
         {
             id: '58694a0f-3da1-471f-bd96-145571e29d777',
             title: 'fifth Item',
-            dcolor:'#8E97FE'
+            color:'#E6672D',
+            picturelink:require('./jpg/shutterstock_578702251_(1)_34.png'),
         },
         {
             id: '58694a0f-3da1-471f-bd96-145571e29d78',
             title: 'six Item',
-            dcolor:'#8E97FE'
+            color:'#F9CF7D',
+            picturelink:require('./jpg/shutterstock_578702251_(1)_33.png'),
         },
         {
             id: '58694a0f-3da1-471f-bd96-145571e29d799',
             title: 'seven Item',
-            dcolor:'#8E97FE'
+            color:'#6AB58E',
+            picturelink:require('./jpg/shutterstock_578702251_(1)_35.png'),
         },
         {
             id: '58694a0f-3da1-471f-bd96-145571e29d74',
             title: 'Eight Item',
-            dcolor:'#8E97FE'
+            color:'#8E97FE',
+            picturelink:require('./jpg/shutterstock_578702251_(1)_34.png'),
         },
       ];
-
-      type ItemProps = {title: string};
-
-      const Item = ({title}: ItemProps) => (
-          <View style={[styles.item,{backgroundColor:'#E6672D'}]}>
-                <Text style={styles.title}>{title}</Text>
-                {/* <Image source={require('')}/> */}
-          </View>
-      ); 
 
   return (
     <SafeAreaView style={{width:wp(100),height:hp(100)}}>
@@ -109,10 +108,17 @@ const Sos = ({navigation}:any) => {
                     data={DATA}
                     numColumns={2}
                     renderItem={({item}) => {
+                      const name=item.title;
+                      console.warn(name);
                     return (
                         <View>
-                            <TouchableOpacity>
-                                <Item title={item.title} />
+                            <TouchableOpacity onPress={()=>{navigation.navigate('Anxiety',{name})}}>
+                                <View style={[styles.item,{backgroundColor:item.color}]}>
+                                   <Text style={styles.title}>{item.title}</Text>
+                                   <Image 
+                                         source={item.picturelink}
+                                         style={{position:'absolute',bottom:0,right:0}}/>
+                                </View>
                             </TouchableOpacity>
                        </View>
                     )

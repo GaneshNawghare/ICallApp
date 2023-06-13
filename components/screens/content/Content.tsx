@@ -1,5 +1,5 @@
 import React from 'react'
-import {View,Text,StyleSheet,TouchableOpacity,FlatList} from 'react-native'
+import {View,Text,StyleSheet,TouchableOpacity,FlatList,Image} from 'react-native'
 import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp,
@@ -8,49 +8,56 @@ import LoginArrow from '../../assests/svg/LoginArrow';
 
 
 const Content = ({navigation}:any) => {
-    const DATA = [
-        {
-          id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-          title: 'First Item',
-        },
-        {
-          id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-          title: 'Second Item',
-        },
-        {
-          id: '58694a0f-3da1-471f-bd96-145571e29d72',
-          title: 'Third Item',
-        },
-        {
-            id: '58694a0f-3da1-471f-bd96-145571e29d712',
-            title: 'fourth Item',
-        },
-        {
-            id: '58694a0f-3da1-471f-bd96-145571e29d777',
-            title: 'fifth Item',
-        },
-        {
-            id: '58694a0f-3da1-471f-bd96-145571e29d78',
-            title: 'six Item',
-        },
-        {
-            id: '58694a0f-3da1-471f-bd96-145571e29d799',
-            title: 'seven Item',
-        },
-        {
-            id: '58694a0f-3da1-471f-bd96-145571e29d74',
-            title: 'Eight Item',
-        },
-      ];
-
-      type ItemProps = {title: string};
-
-      const Item = ({title}: ItemProps) => (
-          <View style={styles.item}>
-                <Text style={styles.title}>{title}</Text>
-          </View>
-      ); 
-
+  const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'Anxiety',
+      color:'#E6672D',
+      picturelink:require('./jpg/shutterstock_578702251_(1)_29.png'),
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Depression',
+      color:'#F9CF7D',
+      picturelink:require('./jpg/shutterstock_578702251_(1)_33.png'),
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Disorder',
+      color:'#6AB58E',
+      picturelink:require('./jpg/shutterstock_578702251_(1)_34.png'),
+    },
+    {
+        id: '58694a0f-3da1-471f-bd96-145571e29d712',
+        title: 'Suicide',
+        color:'#8E97FE',
+        picturelink:require('./jpg/shutterstock_578702251_(1)_35.png'),
+    },
+    {
+        id: '58694a0f-3da1-471f-bd96-145571e29d777',
+        title: 'fifth Item',
+        color:'#E6672D',
+        picturelink:require('./jpg/shutterstock_578702251_(1)_34.png'),
+    },
+    {
+        id: '58694a0f-3da1-471f-bd96-145571e29d78',
+        title: 'six Item',
+        color:'#F9CF7D',
+        picturelink:require('./jpg/shutterstock_578702251_(1)_33.png'),
+    },
+    {
+        id: '58694a0f-3da1-471f-bd96-145571e29d799',
+        title: 'seven Item',
+        color:'#6AB58E',
+        picturelink:require('./jpg/shutterstock_578702251_(1)_35.png'),
+    },
+    {
+        id: '58694a0f-3da1-471f-bd96-145571e29d74',
+        title: 'Eight Item',
+        color:'#8E97FE',
+        picturelink:require('./jpg/shutterstock_578702251_(1)_34.png'),
+    },
+  ];
 
   return (
     <View>
@@ -64,15 +71,21 @@ const Content = ({navigation}:any) => {
             </TouchableOpacity>
             <Text style={[styles.sosText]}>Content</Text>
         </View>
-        <View style={{marginTop:hp(4),marginBottom:hp(35)}}>
-                <FlatList
+        <View style={{marginTop:hp(4),marginBottom:hp(16)}}>
+        <FlatList
                     data={DATA}
                     numColumns={2}
                     renderItem={({item}) => {
+                      const name=item.title;
                     return (
                         <View>
-                            <TouchableOpacity>
-                                <Item title={item.title} />
+                            <TouchableOpacity onPress={()=>{navigation.navigate('ContentInner',{name})}}>
+                                <View style={[styles.item,{backgroundColor:item.color}]}>
+                                   <Text style={styles.title}>{item.title}</Text>
+                                   <Image
+                                         source={item.picturelink}
+                                         style={{position:'absolute',bottom:0,right:0}}/>
+                                </View>
                             </TouchableOpacity>
                        </View>
                     )
@@ -86,7 +99,6 @@ const Content = ({navigation}:any) => {
 
 const styles=StyleSheet.create({
     item: {
-        backgroundColor: '#f9c2ff',
         padding:wp(2.5),
         width:wp(42),
         height:hp(20),
@@ -94,7 +106,11 @@ const styles=StyleSheet.create({
         marginVertical:wp(3),
       },
       title: {
-        fontSize: 32,
+        fontSize: wp(6),
+        fontFamily:'Lato',
+        fontStyle:'normal',
+        fontWeight:'700',
+        color:'#FFFFFF',
       },
     sosText:{
         fontSize:wp(8),
