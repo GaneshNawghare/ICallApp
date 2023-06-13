@@ -42,24 +42,24 @@ const LandingScreen =({navigation}:any)=>{
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{marginBottom:hp(0.5),alignItems:'center',justifyContent:'center'}}>
-        <TouchableOpacity>
+      <View style={{marginTop:hp(5),marginBottom:hp(0.5),alignItems:'center',justifyContent:'center'}}>
+        <TouchableOpacity onPress={()=>{navigation.navigate('Sos')}}>
           <Sos/>
         </TouchableOpacity>
         <Text style={[styles.imageBottomText]}>Established for maritime use in formal notation SOS is {'\n'}
-        with an overscore line,to indicate that the Morse code </Text>
+        with an overscore line,to indicate that the Morse code. </Text>
         <View style={[styles.horinzontalLine]}></View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{navigation.navigate('Content')}}>
           <Content/>
         </TouchableOpacity>
         <Text style={[styles.imageBottomText]}>Established for maritime use in formal notation SOS is {'\n'}
-        with an overscore line,to indicate that the Morse code </Text>
+        with an overscore line,to indicate that the Morse code. </Text>
         <View style={[styles.horinzontalLine]}></View>
         <TouchableOpacity>
           <SelfAssessment/>
         </TouchableOpacity>
         <Text style={[styles.imageBottomText]}>Established for maritime use in formal notation SOS is {'\n'}
-        with an overscore line,to indicate that the Morse code </Text>
+        with an overscore line,to indicate that the Morse code. </Text>
       </View>
       <View style={{marginTop:hp(2.2),flexDirection:'row',alignItems:'center'}}>
         <TouchableOpacity>
@@ -93,8 +93,8 @@ const styles=StyleSheet.create({
  horinzontalLine:{
     marginTop:hp(2),
     marginBottom:hp(2),
-    width:wp(75),
-    height:wp(0.5),
+    width:wp(78),
+    height:wp(0.3),
     backgroundColor:'#DFE0EB',
     marginLeft:wp(2)
  },

@@ -22,11 +22,11 @@ const SplashScreen = ({navigation}:any) :JSX.Element =>{
               marginTop:wp(30)
               }}>
         <Text style={[styles.textContainer]}>Hi, Welcome</Text>
-        <Text style={[styles.textContainer]}>to icall Helpline</Text>
-        <SplashScreenImage style={{marginTop:wp(10)}}/>
+        <Text style={[styles.textContainer1]}>to icall Helpline</Text>
+        <SplashScreenImage style={{position:'absolute',marginTop:wp(38)}}/>
       </View>
       <TouchableOpacity onPress={()=>{LandingPage()}}>
-        <View style={[styles.bottom]}>
+        <View style={[{position:'absolute'},styles.bottom]}>
             <Text style={{
               fontFamily:'Lato',
               fontSize:wp(8),
@@ -41,15 +41,24 @@ const SplashScreen = ({navigation}:any) :JSX.Element =>{
 
 const styles = StyleSheet.create({
   textContainer:{
-   // fontSize: wp(20),
+    position:'absolute',
     fontSize:wp(10),
     color:'#FFFFFF',
+    fontStyle:'normal',
     fontWeight: '900',
   },
+  textContainer1:{
+    position:'absolute',
+    marginTop:hp(6),
+    fontSize:wp(10),
+    color:'#FFFFFF',
+    fontWeight: '400',
+    fontStyle:'normal'
+   },
   bottom:{
     width:wp(90),
     height:hp(10),
-    marginTop:wp(10),
+    marginTop:wp(140),
     borderRadius:wp(10),
     alignItems:'center',
     marginLeft:wp(5),
