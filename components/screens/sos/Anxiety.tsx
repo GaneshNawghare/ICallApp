@@ -54,6 +54,11 @@ const Anxiety = ({navigation,route}:any) => {
       title: 'Nine Item',
       order:9,
     },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d7853',
+      title: 'Tenth Item',
+      order:10,
+    },
   ];
   return (
     <View>
@@ -67,7 +72,7 @@ const Anxiety = ({navigation,route}:any) => {
             </TouchableOpacity>
             <Text style={[styles.sosText]}>{route.params.name}</Text>
         </View>
-        <View style={{marginTop:hp(4),marginBottom:hp(18)}}>
+        <View style={{marginTop:hp(4),marginBottom:hp(28)}}>
                 <FlatList
                     data={DATA}
                     renderItem={({item}) => {
@@ -91,6 +96,14 @@ const Anxiety = ({navigation,route}:any) => {
                     }}
                     keyExtractor={item => item.id}
                 />
+                <View style={{justifyContent:'center',alignItems:'center'}}>
+                  <TouchableOpacity>
+                    <View style={[styles.viewMore]}>
+                       <Text style={[styles.viewMoreText]}>View more</Text>
+                       <Image source={require('../sos/jpg/arrow_back_ios_new.png')} style={{marginLeft:wp(2)}}/>
+                    </View>
+                  </TouchableOpacity>
+                </View>
         </View>
     </View>
   )
@@ -105,8 +118,26 @@ const styles=StyleSheet.create({
     marginLeft:wp(5.5),
     marginVertical:wp(3),
   },
+  viewMore:{
+    width:wp(30),
+    height:hp(4.5),
+    marginTop:wp(2),
+    borderColor:'#6AB58E',
+    borderWidth:wp(0.4),
+    alignItems:'center',
+    justifyContent:'center',
+    flexDirection:'row',
+    borderRadius:wp(1.5),
+  },
+  viewMoreText:{
+    color:'#212126',
+    fontFamily:'Lato',
+    fontSize:wp(4),
+    fontStyle:'normal',
+    fontWeight:'500',
+  },
   title: {
-    fontSize: wp(6),
+    fontSize: wp(5),
     fontFamily:'Lato',
     fontStyle:'normal',
     fontWeight:'600',
