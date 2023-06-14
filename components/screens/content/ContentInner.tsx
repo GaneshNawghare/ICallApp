@@ -82,13 +82,17 @@ const ContentInner = ({navigation,route}:any) => {
                             <TouchableOpacity onPress={()=>{navigation.navigate('InnerPage',{name})}}>
                                 <View style={[styles.item,{flexDirection:'row'}]}>
                                   <Text style={styles.title}>{item.order}. {item.title}</Text>
-                                  <Text style={{
+                                  <Image 
+                                    source={require('./jpg/arrow_back_ios_new_(1).png')}
+                                    style={[styles.arrow]}
+                                    />
+                                  {/* <Text style={{
                                     position:'absolute',
                                     color:'#FFFFFF',
                                     fontSize:wp(8),
                                     marginTop:hp(0.3),
                                     marginLeft:wp(78),
-                                    }}> > </Text>
+                                    }}> > </Text> */}
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -117,6 +121,11 @@ const styles=StyleSheet.create({
     height:hp(6),
     marginLeft:wp(5.5),
     marginVertical:wp(3),
+  },
+  arrow:{
+    position:'absolute',
+    marginTop:hp(2),
+    marginLeft:wp(85),
   },
   viewMore:{
     width:wp(30),
