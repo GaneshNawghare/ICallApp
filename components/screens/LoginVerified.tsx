@@ -16,7 +16,6 @@ const LoginVerified = ({navigation,route}:any) => {
   const userData=route.params.number
   const loginVerified=()=>{
     dispatch(setUserData(userData));
-    console.warn("usernumber:",user.userData);
     navigation.navigate('LandingScreen')
   }
   return (

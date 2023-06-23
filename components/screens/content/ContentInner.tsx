@@ -1,65 +1,84 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, FlatList, Image} from 'react-native'
 import LoginArrow from '../../assests/svg/LoginArrow'
 import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp,
   } from 'react-native-responsive-screen';
+import { getContentInnerData } from '../../../axios';
 
 const ContentInner = ({navigation,route}:any) => {
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'Anxiety',
-      order:1,
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Depression',
-      order:2,
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Disorder',
-      order:3,
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d712',
-      title: 'Suicide',
-      order:4,
+  const parentId=route.params.id
+  const [content, setContent] = useState([])
+  // const DATA = [
+  //   {
+  //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+  //     title: 'Anxiety',
+  //     order:1,
+  //   },
+  //   {
+  //     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+  //     title: 'Depression',
+  //     order:2,
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d72',
+  //     title: 'Disorder',
+  //     order:3,
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d712',
+  //     title: 'Suicide',
+  //     order:4,
 
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d777',
-      title: 'fifth Item',
-      order:5,
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d78',
-      title: 'six Item',
-      order:6,
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d799',
-      title: 'seven Item',
-      order:7,
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d74',
-      title: 'Eight Item',
-      order:8,
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d788',
-      title: 'Nine Item',
-      order:9,
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d7853',
-      title: 'Tenth Item',
-      order:10,
-    },
-  ];
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d777',
+  //     title: 'fifth Item',
+  //     order:5,
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d78',
+  //     title: 'six Item',
+  //     order:6,
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d799',
+  //     title: 'seven Item',
+  //     order:7,
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d74',
+  //     title: 'Eight Item',
+  //     order:8,
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d788',
+  //     title: 'Nine Item',
+  //     order:9,
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d7853',
+  //     title: 'Tenth Item',
+  //     order:10,
+  //   },
+  // ];
+
+  async function getData(id) {
+    try {
+      const data = await getContentInnerData({id});
+      const arr = data.data
+      setContent(arr)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getData(parentId)
+  }, [])
+
+
   return (
     <View>
         <View style={{flexDirection:'row'}}>
@@ -74,14 +93,17 @@ const ContentInner = ({navigation,route}:any) => {
         </View>
         <View style={{marginTop:hp(4),marginBottom:hp(28)}}>
                 <FlatList
-                    data={DATA}
-                    renderItem={({item}) => {
-                      const name=item.title;
+                    data={content}
+                    renderItem={({item}:any) => {
+                      const name=item.topic;
+                      const id=item._id;
+                      const stringHtml=item.textArea;
+                      if(parentId===item.parentId){
                       return (
                         <View>
-                            <TouchableOpacity onPress={()=>{navigation.navigate('InnerPage',{name})}}>
+                            <TouchableOpacity onPress={()=>{navigation.navigate('InnerPage',{name,id,stringHtml})}}>
                                 <View style={[styles.item,{flexDirection:'row'}]}>
-                                  <Text style={styles.title}>{item.order}. {item.title}</Text>
+                                  <Text style={styles.title}>{item.order}. {name}</Text>
                                   <Image 
                                     source={require('./jpg/arrow_back_ios_new_(1).png')}
                                     style={[styles.arrow]}
@@ -97,8 +119,8 @@ const ContentInner = ({navigation,route}:any) => {
                             </TouchableOpacity>
                         </View>
                     )
-                    }}
-                    keyExtractor={item => item.id}
+                    }}}
+                    keyExtractor={(item:any) => item._id}
                 />
                 <View style={{justifyContent:'center',alignItems:'center'}}>
                   <TouchableOpacity>

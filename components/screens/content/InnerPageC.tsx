@@ -5,6 +5,7 @@ import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp,
   } from 'react-native-responsive-screen';
+  import {WebView} from 'react-native-webview';
 
 const InnerPageC = ({navigation,route}:any)=> {
   return (
@@ -19,6 +20,9 @@ const InnerPageC = ({navigation,route}:any)=> {
             </TouchableOpacity>
             <Text style={[styles.sosText]}>{route.params.name}</Text>
         </View>
+        <View style={{marginTop:hp(2),marginLeft:wp(5),width:wp(90),height:hp(100)}}>
+        <WebView source={{html: '<h1>Hello javaTpoint</h1><a href="https://www.w3schools.com">Visit W3Schools.com!</a>'}} />
+      </View>
     </View>
   )
 }

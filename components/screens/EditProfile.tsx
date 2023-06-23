@@ -16,7 +16,6 @@ const EditProfile = ({navigation,route}:any) => {
   const [number, onChangeNumber] = React.useState('');
   const updateProfile =()=>{
     dispatch(setUserData(number));
-    console.warn("profile Updated");
   }
 
   return (

@@ -1,63 +1,73 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {View,Text,StyleSheet,TouchableOpacity,FlatList,Image} from 'react-native'
 import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp,
   } from 'react-native-responsive-screen';
 import LoginArrow from '../../assests/svg/LoginArrow';
+import { getContentData } from '../../../axios';
 
 
 const Content = ({navigation}:any) => {
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'Anxiety',
-      color:'#E6672D',
-      picturelink:require('./jpg/shutterstock_578702251_(1)_29.png'),
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Depression',
-      color:'#F9CF7D',
-      picturelink:require('./jpg/shutterstock_578702251_(1)_33.png'),
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Disorder',
-      color:'#6AB58E',
-      picturelink:require('./jpg/shutterstock_578702251_(1)_34.png'),
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d712',
-        title: 'Suicide',
-        color:'#8E97FE',
-        picturelink:require('./jpg/shutterstock_578702251_(1)_35.png'),
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d777',
-        title: 'fifth Item',
-        color:'#E6672D',
-        picturelink:require('./jpg/shutterstock_578702251_(1)_34.png'),
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d78',
-        title: 'six Item',
-        color:'#F9CF7D',
-        picturelink:require('./jpg/shutterstock_578702251_(1)_33.png'),
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d799',
-        title: 'seven Item',
-        color:'#6AB58E',
-        picturelink:require('./jpg/shutterstock_578702251_(1)_35.png'),
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d74',
-        title: 'Eight Item',
-        color:'#8E97FE',
-        picturelink:require('./jpg/shutterstock_578702251_(1)_34.png'),
-    },
-  ];
+  const Array=['#E6672D','#F9CF7D','#6AB58E','#8E97FE']
+  const [content, setContent] = useState([])
+  let Index=0
+  // const DATA = [
+  //   {
+  //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+  //     title: 'Anxiety',
+  //     picturelink:require('./jpg/shutterstock_578702251_(1)_29.png'),
+  //   },
+  //   {
+  //     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+  //     title: 'Depression',
+  //     picturelink:require('./jpg/shutterstock_578702251_(1)_33.png'),
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d72',
+  //     title: 'Disorder',
+  //     picturelink:require('./jpg/shutterstock_578702251_(1)_34.png'),
+  //   },
+  //   {
+  //       id: '58694a0f-3da1-471f-bd96-145571e29d712',
+  //       title: 'Suicide',
+  //       picturelink:require('./jpg/shutterstock_578702251_(1)_35.png'),
+  //   },
+  //   {
+  //       id: '58694a0f-3da1-471f-bd96-145571e29d777',
+  //       title: 'fifth Item',
+  //       picturelink:require('./jpg/shutterstock_578702251_(1)_34.png'),
+  //   },
+  //   {
+  //       id: '58694a0f-3da1-471f-bd96-145571e29d78',
+  //       title: 'six Item',
+  //       picturelink:require('./jpg/shutterstock_578702251_(1)_33.png'),
+  //   },
+  //   {
+  //       id: '58694a0f-3da1-471f-bd96-145571e29d799',
+  //       title: 'seven Item',
+  //       picturelink:require('./jpg/shutterstock_578702251_(1)_35.png'),
+  //   },
+  //   {
+  //       id: '58694a0f-3da1-471f-bd96-145571e29d74',
+  //       title: 'Eight Item',
+  //       picturelink:require('./jpg/shutterstock_578702251_(1)_34.png'),
+  //   },
+  // ];
+
+  async function getData() {
+    try {
+      const data = await getContentData();
+      const arr = data.data.resp
+      setContent(arr)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
 
   return (
     <View>
@@ -73,24 +83,28 @@ const Content = ({navigation}:any) => {
         </View>
         <View style={{marginTop:hp(4),marginBottom:hp(16)}}>
         <FlatList
-                    data={DATA}
+                    data={content}
                     numColumns={2}
-                    renderItem={({item}) => {
-                      const name=item.title;
+                    renderItem={({item}:any) => {
+                      const name=item.topic;
+                      const id=item._id;
+                      if(Index==Array.length){
+                        Index=0;
+                      }
                     return (
                         <View>
-                            <TouchableOpacity onPress={()=>{navigation.navigate('ContentInner',{name})}}>
-                                <View style={[styles.item,{backgroundColor:item.color}]}>
-                                   <Text style={styles.title}>{item.title}</Text>
+                            <TouchableOpacity onPress={()=>{navigation.navigate('ContentInner',{name,id})}}>
+                                <View style={[styles.item,{backgroundColor:Array[Index++]}]}>
+                                   <Text style={styles.title}>{item.topic}</Text>
                                    <Image
-                                         source={item.picturelink}
+                                         source={item.uploadImage}
                                          style={{position:'absolute',bottom:0,right:0}}/>
                                 </View>
                             </TouchableOpacity>
                        </View>
                     )
                     }}
-                    keyExtractor={item => item.id}
+                    keyExtractor={(item:any) => item.id}
                 />
         </View>
     </View>
