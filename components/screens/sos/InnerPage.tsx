@@ -34,7 +34,7 @@ const InnerPage = ({navigation, route}: any) => {
         <WebView 
         originWhitelist={['*']}
         style={styles.webView}
-        source={{html: `<body style={{fontSize:15}}>${route.params.stringHtml}</body>`}} />
+        source={{html: `<font size="+10">${route.params.stringHtml}</font>`}} />
       </View>
     </View>
   );
@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
     marginLeft: wp(15),
   },
   webView: {
-    fontWeight:'700'
+    fontWeight:'700',
+    backgroundColor:`#f5f5f5`
   },
 });
 

@@ -22,6 +22,7 @@ import Content from './components/screens/content/Content';
 import Anxiety from './components/screens/sos/Anxiety';
 import InnerPage from './components/screens/sos/InnerPage';
 import ContentInner from './components/screens/content/ContentInner';
+import InnerPageC from './components/screens/content/InnerPageC';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +46,7 @@ const Routing = () =>{
         <Stack.Screen name="Anxiety" component={Anxiety}/>
         <Stack.Screen name="ContentInner" component={ContentInner}/>
         <Stack.Screen name="InnerPage" component={InnerPage}/>
+        <Stack.Screen name="InnerPageC" component={InnerPageC}/>
       </Stack.Navigator>
    </NavigationContainer>
   )

@@ -1,5 +1,13 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Switch} from 'react-native';
+import {
+  View, 
+  Text, 
+  TouchableOpacity, 
+  StyleSheet, 
+  Switch,
+  PermissionsAndroid,
+  Platform,
+} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -21,6 +29,19 @@ const ProfileScreen = ({navigation}: any) => {
     dispatch(removeUserData());
     navigation.navigate('SplashScreen');
   };
+
+  // const checkApplicationPermission = async () => {
+  //   if (Platform.OS === 'android') {
+  //     try {
+  //       await PermissionsAndroid.request(
+  //         PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+  //       );
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  // };
+
   return (
     <View>
       <View
@@ -165,7 +186,10 @@ const ProfileScreen = ({navigation}: any) => {
                 offColor="#DFE0EB"
                 labelStyle={[styles.switch]}
                 //size="small"
-                onToggle={() => setIsEnabled(!isEnabled)}
+                onToggle={() =>{
+                  // checkApplicationPermission();
+                  setIsEnabled(!isEnabled)
+                }}
               />
             </View>
           </View>

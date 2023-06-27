@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity,SafeAreaView} from 'react-native';
 import Arrow from '../assests/svg/Arrow';
 import {
   heightPercentageToDP as hp,
@@ -26,8 +26,9 @@ const LandingScreen = ({navigation}: any) => {
     }
   };
   return (
+    <SafeAreaView>
     <View style={{backgroundColor: '#F5F5F5', width: wp(100), height: hp(100)}}>
-      <View style={{flex: 1, flexDirection: 'row', marginLeft: wp(5)}}>
+      <View style={{flex: 1, flexDirection: 'row', marginLeft: wp(6.5)}}>
         <View style={{flex: 2, marginTop: hp(1.2)}}>
           <Text style={[styles.textCon]}>Choose which content</Text>
           <View style={{flexDirection: 'row'}}>
@@ -53,8 +54,10 @@ const LandingScreen = ({navigation}: any) => {
       </View>
       <View
         style={{
-          marginTop: hp(2),
-          marginBottom: hp(2),
+          position:'absolute',
+          marginTop: hp(10),
+          marginLeft:wp(8),
+          // marginBottom: hp(2),
           alignItems: 'center',
           justifyContent: 'center',
         }}>
@@ -89,7 +92,7 @@ const LandingScreen = ({navigation}: any) => {
         </Text>
       </View>
       <View
-        style={{marginTop: hp(1), marginBottom:hp(2),flexDirection: 'row', alignItems: 'center'}}>
+        style={{position:'absolute',marginTop: hp(90),flexDirection: 'row', alignItems: 'center'}}>
         <TouchableOpacity>
           <ChatLogo style={{marginLeft: wp(18)}} />
           <Text style={[{marginLeft: wp(20)}, styles.bottomText]}>Chat</Text>
@@ -104,6 +107,7 @@ const LandingScreen = ({navigation}: any) => {
         </TouchableOpacity>
       </View>
     </View>
+    </SafeAreaView>
   );
 };
 

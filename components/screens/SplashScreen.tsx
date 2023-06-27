@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -18,6 +18,7 @@ const SplashScreen = ({navigation}: any): JSX.Element => {
         width: wp(100),
         height: hp(100),
       }}>
+      <SafeAreaView style={{backgroundColor: '#8E97FE'}}>
       <View
         style={{
           alignItems: 'center',
@@ -43,6 +44,7 @@ const SplashScreen = ({navigation}: any): JSX.Element => {
           </Text>
         </View>
       </TouchableOpacity>
+    </SafeAreaView>
     </View>
   );
 };

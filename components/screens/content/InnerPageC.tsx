@@ -21,7 +21,10 @@ const InnerPageC = ({navigation,route}:any)=> {
             <Text style={[styles.sosText]}>{route.params.name}</Text>
         </View>
         <View style={{marginTop:hp(2),marginLeft:wp(5),width:wp(90),height:hp(100)}}>
-        <WebView source={{html: '<h1>Hello javaTpoint</h1><a href="https://www.w3schools.com">Visit W3Schools.com!</a>'}} />
+        <WebView 
+        originWhitelist={['*']}
+        style={styles.webView}
+        source={{html: `<font style="font-size: 40px;">${route.params.stringHtml}</font>`}} />
       </View>
     </View>
   )
@@ -36,6 +39,10 @@ const styles=StyleSheet.create({
         position:'absolute',
         marginTop:hp(3),
         marginLeft:wp(15),
+      },
+      webView: {
+        fontWeight:'700',
+        backgroundColor:`#f5f5f5`
       },
 })
 

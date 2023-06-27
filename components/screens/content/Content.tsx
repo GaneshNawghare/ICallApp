@@ -91,17 +91,19 @@ const Content = ({navigation}:any) => {
                       if(Index==Array.length){
                         Index=0;
                       }
+                      var imageURI =item.uploadImage;
                     return (
-                        <View>
-                            <TouchableOpacity onPress={()=>{navigation.navigate('ContentInner',{name,id})}}>
-                                <View style={[styles.item,{backgroundColor:Array[Index++]}]}>
-                                   <Text style={styles.title}>{item.topic}</Text>
-                                   <Image
-                                         source={item.uploadImage}
-                                         style={{position:'absolute',bottom:0,right:0}}/>
-                                </View>
-                            </TouchableOpacity>
-                       </View>
+                      <View>
+                      <TouchableOpacity onPress={()=>{navigation.navigate('ContentInner',{name,id})}}>
+                          <View style={[styles.item,{backgroundColor:Array[Index++]}]}>
+                             <Text style={styles.title}>{item.topic}</Text>
+                             <Image
+                               style={{ position:'absolute',width: 71,height: 71,bottom:2,right:2}}
+                               source={{uri:imageURI}}
+                              />
+                          </View>
+                      </TouchableOpacity>
+                 </View>
                     )
                     }}
                     keyExtractor={(item:any) => item.id}

@@ -116,26 +116,29 @@ const Sos = ({navigation}:any) => {
                 <FlatList
                     data={content}
                     numColumns={2}
-                    renderItem={({item}) => {
+                    renderItem={({item}:any) => {
                       const name=item.topic;
                       if(Index==Array.length){
                         Index=0;
                       }
                       const id=item._id;
+                      var imageURI =item.uploadImage;
                     return (
                         <View>
                             <TouchableOpacity onPress={()=>{navigation.navigate('Anxiety',{name,id})}}>
                                 <View style={[styles.item,{backgroundColor:Array[Index++]}]}>
                                    <Text style={styles.title}>{item.topic}</Text>
-                                   {/* <Image 
-                                         source={item.uploadImage}
-                                         style={{position:'absolute',bottom:0,right:0}}/> */}
+                                   <Image
+                                     style={{ position:'absolute',width: 71,height: 71,bottom:2,right:2}}
+                                     source={{uri:imageURI}}
+                                    // style={{position:'absolute',bottom:0,right:0}}
+                                    />
                                 </View>
                             </TouchableOpacity>
                        </View>
                     )
                     }}
-                    keyExtractor={item => item.id}
+                    keyExtractor={(item:any) => item.id}
                 />
         </View>
     </View>
