@@ -83,13 +83,13 @@ const LandingScreen = ({navigation}: any) => {
           with an overscore line,to indicate that the Morse code.{' '}
         </Text>
         <View style={[styles.horinzontalLine]}></View>
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <SelfAssessment />
         </TouchableOpacity>
         <Text style={[styles.imageBottomText]}>
           Established for maritime use in formal notation SOS is {'\n'}
           with an overscore line,to indicate that the Morse code.{' '}
-        </Text>
+        </Text> */}
       </View>
       <View
         style={{position:'absolute',marginTop: hp(90),flexDirection: 'row', alignItems: 'center'}}>

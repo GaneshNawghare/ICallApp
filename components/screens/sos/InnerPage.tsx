@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 import LoginArrow from '../../assests/svg/LoginArrow';
 import {
@@ -14,6 +15,12 @@ import {
 import {WebView} from 'react-native-webview';
 
 const InnerPage = ({navigation, route}: any) => {
+  const [loading, setLoading] = useState(true); 
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 1000);
+
   return (
     <View style={{width:wp(100),height:hp(100)}}>
       <View style={{flexDirection: 'row'}}>
@@ -30,12 +37,18 @@ const InnerPage = ({navigation, route}: any) => {
         </TouchableOpacity>
         <Text style={[styles.sosText]}>{route.params.name}</Text>
       </View>
+      {loading ? (
+        <View style={[styles.container]}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      ) : (
+        <>
       <View style={{marginTop:hp(2),marginLeft:wp(5),width:wp(90),height:hp(100)}}>
         <WebView 
         originWhitelist={['*']}
         style={styles.webView}
         source={{html: `<font size="+10">${route.params.stringHtml}</font>`}} />
-      </View>
+      </View></>)}
     </View>
   );
 };
@@ -53,6 +66,11 @@ const styles = StyleSheet.create({
   webView: {
     fontWeight:'700',
     backgroundColor:`#f5f5f5`
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    marginBottom:hp(10),
   },
 });
 

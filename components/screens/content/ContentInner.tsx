@@ -6,6 +6,7 @@ import {
   StyleSheet,
   FlatList,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import LoginArrow from '../../assests/svg/LoginArrow';
 import {
@@ -17,66 +18,16 @@ import {getContentInnerData} from '../../../axios';
 const ContentInner = ({navigation, route}: any) => {
   const parentId = route.params.id;
   const [content, setContent] = useState([]);
+  const [loading, setLoading] = useState(false);
   let cnt = 0;
-  // const DATA = [
-  //   {
-  //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-  //     title: 'Anxiety',
-  //     order:1,
-  //   },
-  //   {
-  //     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-  //     title: 'Depression',
-  //     order:2,
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-  //     title: 'Disorder',
-  //     order:3,
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d712',
-  //     title: 'Suicide',
-  //     order:4,
-
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d777',
-  //     title: 'fifth Item',
-  //     order:5,
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d78',
-  //     title: 'six Item',
-  //     order:6,
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d799',
-  //     title: 'seven Item',
-  //     order:7,
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d74',
-  //     title: 'Eight Item',
-  //     order:8,
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d788',
-  //     title: 'Nine Item',
-  //     order:9,
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d7853',
-  //     title: 'Tenth Item',
-  //     order:10,
-  //   },
-  // ];
 
   async function getData(id) {
     try {
+      setLoading(true);
       const data = await getContentInnerData({id});
       const arr = data.data;
       setContent(arr);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -84,7 +35,7 @@ const ContentInner = ({navigation, route}: any) => {
 
   useEffect(() => {
     getData(parentId);
-  }, []);
+  }, [parentId]);
 
   return (
     <View>
@@ -103,6 +54,11 @@ const ContentInner = ({navigation, route}: any) => {
         <Text style={[styles.sosText]}>{route.params.name}</Text>
       </View>
       <View style={{marginTop: hp(4), marginBottom: hp(24)}}>
+      {loading ? 
+          <View style={[styles.container]}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>
+          :
         <FlatList
           data={content}
           renderItem={({item}) => {
@@ -134,7 +90,7 @@ const ContentInner = ({navigation, route}: any) => {
             }
           }}
           keyExtractor={(item: any) => item._id}
-        />
+        />}
         <View
           style={{
             justifyContent: 'center',
@@ -207,6 +163,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     marginTop: hp(3),
     marginLeft: wp(15),
+  },
+  container: {
+    flex: 1,
+    marginTop:hp(30),
+    alignItems:'center',
+    justifyContent: 'center',
   },
 });
 export default ContentInner;
