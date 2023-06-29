@@ -9,11 +9,15 @@ import Svg, {
   ClipPath,
   Image
 } from "react-native-svg"
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
 function Sos(props) {
   return (
     <Svg
-      width={350}
+      width={wp(90)}
       height={152}
       viewBox="0 0 350 152"
       fill="none"

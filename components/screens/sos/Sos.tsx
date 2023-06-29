@@ -31,7 +31,6 @@ const Sos = ({navigation}: any) => {
       setLoading(true);
       const data = await getSosData();
       const arr = data.data.resp;
-      console.log('main sos', arr);
       setContent(arr);
       setLoading(false);
     } catch (error) {

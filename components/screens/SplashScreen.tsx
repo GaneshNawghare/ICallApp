@@ -7,9 +7,7 @@ import {
 import SplashScreenImage from '../assests/svg/SplashScreenImage';
 
 const SplashScreen = ({navigation}: any): JSX.Element => {
-  const LandingPage = () => {
-    navigation.navigate('LandingScreen');
-  };
+
   return (
     <View
       style={{
@@ -18,7 +16,7 @@ const SplashScreen = ({navigation}: any): JSX.Element => {
         width: wp(100),
         height: hp(100),
       }}>
-      <SafeAreaView style={{backgroundColor: '#8E97FE'}}>
+      {/* <SafeAreaView style={{backgroundColor: '#8E97FE'}}> */}
       <View
         style={{
           alignItems: 'center',
@@ -28,12 +26,12 @@ const SplashScreen = ({navigation}: any): JSX.Element => {
         <Text style={[styles.textContainer1]}>to icall Helpline</Text>
         <SplashScreenImage style={{position: 'absolute', marginTop: wp(38)}} />
       </View>
-      <TouchableOpacity
-        onPress={() => {
-          LandingPage();
-        }}>
+      <TouchableOpacity onPress={()=>{navigation.navigate('LandingScreen');}}>
         <View style={[{position: 'absolute'}, styles.bottom]}>
           <Text
+          onPress={() => {
+            navigation.navigate('LandingScreen');
+          }}
             style={{
               fontFamily: 'Lato',
               fontSize: wp(8),
@@ -43,8 +41,7 @@ const SplashScreen = ({navigation}: any): JSX.Element => {
             Get Started
           </Text>
         </View>
-      </TouchableOpacity>
-    </SafeAreaView>
+        </TouchableOpacity>
     </View>
   );
 };

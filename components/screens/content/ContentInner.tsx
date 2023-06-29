@@ -63,11 +63,9 @@ const ContentInner = ({navigation, route}: any) => {
           data={content}
           renderItem={({item}) => {
             cnt=item.order;
-            console.log("cnt",cnt);
             const name = item.topic;
             const id = item._id;
             const stringHtml = item.textArea;
-            console.log('content', stringHtml);
             if (parentId === item.parentId) {
               return (
                 <View>

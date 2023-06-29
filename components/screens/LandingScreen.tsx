@@ -55,8 +55,8 @@ const LandingScreen = ({navigation}: any) => {
       <View
         style={{
           position:'absolute',
-          marginTop: hp(10),
-          marginLeft:wp(8),
+          marginTop: hp(9),
+          marginLeft:wp(5),
           // marginBottom: hp(2),
           alignItems: 'center',
           justifyContent: 'center',
@@ -121,15 +121,15 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato',
   },
   horinzontalLine: {
-    marginTop: hp(2),
-    marginBottom: hp(2),
+    marginTop: hp(1),
+    marginBottom: hp(1),
     width: wp(78),
     height: wp(0.3),
     backgroundColor: '#DFE0EB',
     marginLeft: wp(2),
   },
   imageBottomText: {
-    marginTop: hp(0.4),
+    fontSize:wp(3.6),
     color: '#36364D',
     fontFamily: 'Lato',
   },
