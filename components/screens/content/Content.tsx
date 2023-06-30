@@ -76,7 +76,7 @@ const Content = ({navigation}: any) => {
                     navigation.navigate('ContentInner', {name, id});
                   }}>
                   <View
-                    style={[styles.item, {backgroundColor: Array[Index++]}]}>
+                    style={[styles.item, {backgroundColor: item.backgroundColor}]}>
                     <Text style={styles.title}>{item.topic}</Text>
                     <Image
                       style={{

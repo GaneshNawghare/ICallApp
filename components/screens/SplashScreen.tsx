@@ -1,12 +1,25 @@
-import React from 'react';
-import {Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'react-native';
+import React,{useEffect} from 'react';
+import {
+  Text, 
+  View, 
+  StyleSheet, 
+  Image, 
+  TouchableOpacity, 
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import SplashScreenImage from '../assests/svg/SplashScreenImage';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
-const SplashScreen = ({navigation}: any): JSX.Element => {
+const SplashScreen = ({navigation}: any) => {
+
+  useEffect(() => {
+    changeNavigationBarColor('#8E97FE')
+  },[]);
 
   return (
     <View
@@ -16,6 +29,10 @@ const SplashScreen = ({navigation}: any): JSX.Element => {
         width: wp(100),
         height: hp(100),
       }}>
+        <StatusBar
+        animated={true}
+        backgroundColor="#8E97FE"
+      />
       {/* <SafeAreaView style={{backgroundColor: '#8E97FE'}}> */}
       <View
         style={{
@@ -31,6 +48,7 @@ const SplashScreen = ({navigation}: any): JSX.Element => {
           <Text
           onPress={() => {
             navigation.navigate('LandingScreen');
+            changeNavigationBarColor('#F5F5F5')
           }}
             style={{
               fontFamily: 'Lato',

@@ -4,6 +4,7 @@ import {
   Text, 
   TouchableOpacity, 
   StyleSheet, 
+  StatusBar,
   Switch,
   PermissionsAndroid,
   Platform,
@@ -50,6 +51,11 @@ const ProfileScreen = ({navigation}: any) => {
           width: wp(100),
           height: hp(30),
         }}>
+        <StatusBar
+        animated={true}
+        backgroundColor="#8E97FE"
+        barStyle="light-content"
+        />
         <View style={{flexDirection: 'row'}}>
           <TouchableOpacity
             onPress={() => {

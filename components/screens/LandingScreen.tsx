@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity,SafeAreaView} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity,SafeAreaView, StatusBar} from 'react-native';
 import Arrow from '../assests/svg/Arrow';
 import {
   heightPercentageToDP as hp,
@@ -14,6 +14,7 @@ import CallLogo from '../assests/svg/CallLogo';
 import MessageLogo from '../assests/svg/MessageLogo';
 import {useSelector} from 'react-redux';
 import * as _ from 'lodash';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 const LandingScreen = ({navigation}: any) => {
   const store: any = useSelector((store: any) => store);
@@ -25,9 +26,19 @@ const LandingScreen = ({navigation}: any) => {
       navigation.navigate('ProfileScreen');
     }
   };
+
+  {changeNavigationBarColor('#F5F5F5')}
   return (
     <SafeAreaView>
     <View style={{backgroundColor: '#F5F5F5', width: wp(100), height: hp(100)}}>
+    <StatusBar
+        animated={true}
+        backgroundColor="#F5F5F5"
+        barStyle="dark-content"
+        // barStyle={statusBarStyle}
+        // showHideTransition={statusBarTransition}
+        // hidden={hidden}
+      />
       <View style={{flex: 1, flexDirection: 'row', marginLeft: wp(6.5)}}>
         <View style={{flex: 2, marginTop: hp(1.2)}}>
           <Text style={[styles.textCon]}>Choose which content</Text>
