@@ -5,7 +5,6 @@ import {
   TouchableOpacity, 
   StyleSheet, 
   StatusBar,
-  Switch,
   PermissionsAndroid,
   Platform,
 } from 'react-native';

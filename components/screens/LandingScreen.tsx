@@ -35,9 +35,6 @@ const LandingScreen = ({navigation}: any) => {
         animated={true}
         backgroundColor="#F5F5F5"
         barStyle="dark-content"
-        // barStyle={statusBarStyle}
-        // showHideTransition={statusBarTransition}
-        // hidden={hidden}
       />
       <View style={{flex: 1, flexDirection: 'row', marginLeft: wp(6.5)}}>
         <View style={{flex: 2, marginTop: hp(1.2)}}>
@@ -59,16 +56,15 @@ const LandingScreen = ({navigation}: any) => {
             onPress={() => {
               LoginOrProfile();
             }}>
-            <ProfileLogo style={{marginLeft: wp(15)}} />
+            <ProfileLogo style={{marginLeft: wp(16.5)}} />
           </TouchableOpacity>
         </View>
       </View>
       <View
         style={{
           position:'absolute',
-          marginTop: hp(9),
-          marginLeft:wp(5),
-          // marginBottom: hp(2),
+          marginTop: hp(10.2),
+          marginLeft:wp(5.3),
           alignItems: 'center',
           justifyContent: 'center',
         }}>
@@ -124,7 +120,7 @@ const LandingScreen = ({navigation}: any) => {
 
 const styles = StyleSheet.create({
   textCon: {
-    marginLeft: wp(1.3),
+    marginLeft: wp(1),
     fontSize: wp(5.3),
     fontWeight: '600',
     color: '#292933',
@@ -141,6 +137,7 @@ const styles = StyleSheet.create({
   },
   imageBottomText: {
     fontSize:wp(3.6),
+    marginTop:hp(0.3),
     color: '#36364D',
     fontFamily: 'Lato',
   },

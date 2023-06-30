@@ -16,8 +16,8 @@ import {
 
 const Content = (props) => (
   <Svg
+    style={{height:hp(20)}}
     width={wp(90)}
-    height={wp(40)}
     viewBox="0 0 350 152"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
