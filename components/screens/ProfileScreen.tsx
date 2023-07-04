@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {
-  View, 
-  Text, 
-  TouchableOpacity, 
-  StyleSheet, 
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
   StatusBar,
   PermissionsAndroid,
   Platform,
@@ -51,9 +51,9 @@ const ProfileScreen = ({navigation}: any) => {
           height: hp(30),
         }}>
         <StatusBar
-        animated={true}
-        backgroundColor="#8E97FE"
-        barStyle="light-content"
+          animated={true}
+          backgroundColor="#8E97FE"
+          barStyle="light-content"
         />
         <View style={{flexDirection: 'row'}}>
           <TouchableOpacity
@@ -91,19 +91,19 @@ const ProfileScreen = ({navigation}: any) => {
             }}>
             <ProfilePage />
             <TouchableOpacity
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: hp(2),
+              width: wp(30),
+              height: hp(5),
+              borderColor: '#FCFDFF',
+              borderWidth: wp(0.3),
+            }}
               onPress={() => {
                 navigation.navigate('EditProfile', {number});
               }}>
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginTop: hp(2),
-                  width: wp(30),
-                  height: hp(5),
-                  borderColor: '#FCFDFF',
-                  borderWidth: wp(0.3),
-                }}>
+              
                 <Text
                   style={{
                     color: '#FCFDFF',
@@ -113,7 +113,6 @@ const ProfileScreen = ({navigation}: any) => {
                   }}>
                   Edit Profile
                 </Text>
-              </View>
             </TouchableOpacity>
           </View>
         </View>
@@ -152,8 +151,7 @@ const ProfileScreen = ({navigation}: any) => {
           height: hp(0.2),
           backgroundColor: '#DFE0EB',
           marginTop: hp(3),
-        }}></View>
-      <View>
+        }}/>
         <View>
           <Text
             style={{
@@ -191,15 +189,14 @@ const ProfileScreen = ({navigation}: any) => {
                 offColor="#DFE0EB"
                 labelStyle={[styles.switch]}
                 //size="small"
-                onToggle={() =>{
+                onToggle={() => {
                   // checkApplicationPermission();
-                  setIsEnabled(!isEnabled)
+                  setIsEnabled(!isEnabled);
                 }}
               />
             </View>
           </View>
         </View>
-      </View>
       <View
         style={{
           width: wp(100),
@@ -207,7 +204,6 @@ const ProfileScreen = ({navigation}: any) => {
           backgroundColor: '#DFE0EB',
           marginTop: hp(3),
         }}></View>
-      <View>
         <View>
           <Text
             style={{
@@ -243,7 +239,6 @@ const ProfileScreen = ({navigation}: any) => {
             </View>
           </View>
         </View>
-      </View>
       <View
         style={{
           alignItems: 'center',

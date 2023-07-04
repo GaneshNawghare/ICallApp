@@ -19,17 +19,17 @@ const ContentInner = ({navigation, route}: any) => {
   const parentId = route.params.id;
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
-  let cnt = 0;
 
-  async function getData(id) {
+  async function getData(id: any) {
     try {
       setLoading(true);
-      const data = await getContentInnerData({id});
+      const data = await getContentInnerData(id);
       const arr = data.data;
       setContent(arr);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      setLoading(false);
+      console.log('Error in getData (ContentInner)',error);
     }
   }
 
@@ -62,7 +62,6 @@ const ContentInner = ({navigation, route}: any) => {
         <FlatList
           data={content}
           renderItem={({item}) => {
-            cnt=item.order;
             const name = item.topic;
             const id = item._id;
             const stringHtml = item.textArea;
@@ -72,8 +71,9 @@ const ContentInner = ({navigation, route}: any) => {
                   <TouchableOpacity
                     onPress={() => {
                       navigation.navigate('InnerPageC', {name, id, stringHtml});
-                    }}>
-                    <View style={[styles.item, {flexDirection: 'row'}]}>
+                    }}
+                    style={[styles.item, {flexDirection: 'row'}]}
+                    >
                       <Text style={styles.title}>
                         {item.order}. {name}
                       </Text>
@@ -81,7 +81,6 @@ const ContentInner = ({navigation, route}: any) => {
                         source={require('./jpg/arrow_back_ios_new_(1).png')}
                         style={[styles.arrow]}
                       />
-                    </View>
                   </TouchableOpacity>
                 </View>
               );
@@ -97,8 +96,7 @@ const ContentInner = ({navigation, route}: any) => {
             marginLeft: wp(35),
             alignItems: 'center',
           }}>
-          {cnt >= 8 ? (
-            <TouchableOpacity>
+            {/* <TouchableOpacity>
               <View style={[styles.viewMore]}>
                 <Text style={[styles.viewMoreText]}>View more</Text>
                 <Image
@@ -106,8 +104,7 @@ const ContentInner = ({navigation, route}: any) => {
                   style={{marginLeft: wp(2)}}
                 />
               </View>
-            </TouchableOpacity>
-          ) : null}
+            </TouchableOpacity> */}
         </View>
       </View>
     </View>

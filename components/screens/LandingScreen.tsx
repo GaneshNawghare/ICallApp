@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity,SafeAreaView, StatusBar} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import Arrow from '../assests/svg/Arrow';
 import {
   heightPercentageToDP as hp,
@@ -27,11 +34,12 @@ const LandingScreen = ({navigation}: any) => {
     }
   };
 
-  {changeNavigationBarColor('#F5F5F5')}
+  {
+    changeNavigationBarColor('#F5F5F5');
+  }
   return (
-    <SafeAreaView>
-    <View style={{backgroundColor: '#F5F5F5', width: wp(100), height: hp(100)}}>
-    <StatusBar
+    <SafeAreaView style={styles.SafeArea}>
+      <StatusBar
         animated={true}
         backgroundColor="#F5F5F5"
         barStyle="dark-content"
@@ -60,14 +68,7 @@ const LandingScreen = ({navigation}: any) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View
-        style={{
-          position:'absolute',
-          marginTop: hp(10.2),
-          marginLeft:wp(5.3),
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+      <View style={styles.mainPart}>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate('Sos');
@@ -98,8 +99,7 @@ const LandingScreen = ({navigation}: any) => {
           with an overscore line,to indicate that the Morse code.{' '}
         </Text> */}
       </View>
-      <View
-        style={{position:'absolute',marginTop: hp(90),flexDirection: 'row', alignItems: 'center'}}>
+      <View style={styles.bottomLogo}>
         <TouchableOpacity>
           <ChatLogo style={{marginLeft: wp(18)}} />
           <Text style={[{marginLeft: wp(20)}, styles.bottomText]}>Chat</Text>
@@ -113,7 +113,6 @@ const LandingScreen = ({navigation}: any) => {
           <Text style={[{marginLeft: wp(15)}, styles.bottomText]}>Email</Text>
         </TouchableOpacity>
       </View>
-    </View>
     </SafeAreaView>
   );
 };
@@ -136,8 +135,8 @@ const styles = StyleSheet.create({
     marginLeft: wp(2),
   },
   imageBottomText: {
-    fontSize:wp(3.6),
-    marginTop:hp(0.3),
+    fontSize: wp(3.6),
+    marginTop: hp(0.3),
     color: '#36364D',
     fontFamily: 'Lato',
   },
@@ -149,6 +148,24 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato',
     color: '#353D6C',
     fontStyle: 'normal',
+  },
+  SafeArea: {
+    backgroundColor: '#F5F5F5',
+    width: wp(100),
+    height: hp(100),
+  },
+  bottomLogo: {
+    position: 'absolute',
+    marginTop: hp(90),
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  mainPart: {
+    position: 'absolute',
+    marginTop: hp(10.2),
+    marginLeft: wp(5.3),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 export default LandingScreen;

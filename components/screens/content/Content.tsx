@@ -16,10 +16,8 @@ import LoginArrow from '../../assests/svg/LoginArrow';
 import {getContentData} from '../../../axios';
 
 const Content = ({navigation}: any) => {
-  const Array = ['#E6672D', '#F9CF7D', '#6AB58E', '#8E97FE'];
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
-  let Index = 0;
 
   async function getData() {
     try {
@@ -29,7 +27,8 @@ const Content = ({navigation}: any) => {
       setContent(arr);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      setLoading(false);
+      console.log('Error in getData', error);
     }
   }
 
@@ -54,47 +53,40 @@ const Content = ({navigation}: any) => {
         <Text style={[styles.sosText]}>Content</Text>
       </View>
       <View style={{marginTop: hp(4), marginBottom: hp(16)}}>
-      {loading ? 
+        {loading ? (
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />
           </View>
-          :
-        <FlatList
-          data={content}
-          numColumns={2}
-          renderItem={({item}: any) => {
-            const name = item.topic;
-            const id = item._id;
-            if (Index == Array.length) {
-              Index = 0;
-            }
-            var imageURI = item.uploadImage;
-            return (
-              <View>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('ContentInner', {name, id});
-                  }}>
-                  <View
-                    style={[styles.item, {backgroundColor: item.backgroundColor}]}>
+        ) : (
+          <FlatList
+            data={content}
+            numColumns={2}
+            renderItem={({item}: any) => {
+              const name = item.topic;
+              const id = item._id;
+              var imageURI = item.uploadImage;
+              return (
+                <View>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate('ContentInner', {name, id});
+                    }}
+                    style={[
+                      styles.item,
+                      {backgroundColor: item.backgroundColor},
+                    ]}>
                     <Text style={styles.title}>{item.topic}</Text>
                     <Image
-                      style={{
-                        position: 'absolute',
-                        width: 71,
-                        height: 71,
-                        bottom: 2,
-                        right: 2,
-                      }}
+                      style={styles.imgStyle}
                       source={{uri: imageURI}}
                     />
-                  </View>
-                </TouchableOpacity>
-              </View>
-            );
-          }}
-          keyExtractor={(item: any) => item.id}
-        />}
+                  </TouchableOpacity>
+                </View>
+              );
+            }}
+            keyExtractor={(item: any) => item.id}
+          />
+        )}
       </View>
     </View>
   );
@@ -115,6 +107,13 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#FFFFFF',
   },
+  imgStyle: {
+    position: 'absolute',
+    width: 71,
+    height: 71,
+    bottom: 2,
+    right: 2,
+  },
   sosText: {
     fontSize: wp(8),
     fontWeight: '600',
@@ -126,8 +125,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop:hp(30),
-    alignItems:'center',
+    marginTop: hp(30),
+    alignItems: 'center',
     justifyContent: 'center',
   },
 });

@@ -1,10 +1,10 @@
-import React,{useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {
-  Text, 
-  View, 
-  StyleSheet, 
-  Image, 
-  TouchableOpacity, 
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
   SafeAreaView,
   StatusBar,
 } from 'react-native';
@@ -16,24 +16,13 @@ import SplashScreenImage from '../assests/svg/SplashScreenImage';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 const SplashScreen = ({navigation}: any) => {
-
   useEffect(() => {
-    changeNavigationBarColor('#8E97FE')
-  },[]);
+    changeNavigationBarColor('#8E97FE');
+  }, []);
 
   return (
-    <View
-      style={{
-        backgroundColor: '#8E97FE',
-        flex:1,
-        width: wp(100),
-        height: hp(100),
-      }}>
-        <StatusBar
-        animated={true}
-        backgroundColor="#8E97FE"
-      />
-      {/* <SafeAreaView style={{backgroundColor: '#8E97FE'}}> */}
+    <SafeAreaView style={styles.safeAera}>
+      <StatusBar animated={true} backgroundColor="#8E97FE" />
       <View
         style={{
           alignItems: 'center',
@@ -43,24 +32,23 @@ const SplashScreen = ({navigation}: any) => {
         <Text style={[styles.textContainer1]}>to icall Helpline</Text>
         <SplashScreenImage style={{position: 'absolute', marginTop: wp(38)}} />
       </View>
-      <TouchableOpacity onPress={()=>{navigation.navigate('LandingScreen');}}>
-        <View style={[{position: 'absolute'}, styles.bottom]}>
-          <Text
-          onPress={() => {
-            navigation.navigate('LandingScreen');
-            changeNavigationBarColor('#F5F5F5')
-          }}
-            style={{
-              fontFamily: 'Lato',
-              fontSize: wp(8),
-              color: '#212126',
-              fontWeight: '900',
-            }}>
-            Get Started
-          </Text>
-        </View>
-        </TouchableOpacity>
-    </View>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('LandingScreen');
+          changeNavigationBarColor('#F5F5F5');
+        }}
+        style={[{position: 'absolute'}, styles.bottom]}>
+        <Text
+          style={{
+            fontFamily: 'Lato',
+            fontSize: wp(8),
+            color: '#212126',
+            fontWeight: '900',
+          }}>
+          Get Started
+        </Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 };
 
@@ -72,6 +60,14 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: '900',
   },
+
+  safeAera: {
+    backgroundColor: '#8E97FE',
+    flex: 1,
+    width: wp(100),
+    height: hp(100),
+  },
+
   textContainer1: {
     position: 'absolute',
     marginTop: hp(6),
@@ -83,7 +79,7 @@ const styles = StyleSheet.create({
   bottom: {
     width: wp(90),
     height: hp(10),
-    marginTop: wp(140),
+    marginTop: hp(85),
     borderRadius: wp(10),
     alignItems: 'center',
     marginLeft: wp(5),

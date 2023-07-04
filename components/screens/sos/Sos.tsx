@@ -26,7 +26,7 @@ const Sos = ({navigation}: any) => {
   const [loading, setLoading] = useState(false);
   let Index = 0;
 
-  async function getData() {
+  const getData = async () => {
     try {
       setLoading(true);
       const data = await getSosData();
@@ -34,72 +34,66 @@ const Sos = ({navigation}: any) => {
       setContent(arr);
       setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     getData();
-  },[]);
+  }, []);
 
   return (
     <SafeAreaView style={{width: wp(100), height: hp(100)}}>
-      <View>
-        <View style={{flexDirection: 'row'}}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.goBack();
-            }}>
-            <LoginArrow
-              style={{
-                marginTop: hp(5),
-                marginLeft: wp(5),
-              }}
-            />
-          </TouchableOpacity>
-          <Text style={[styles.sosText]}>SOS</Text>
-        </View>
-        <View style={{flexDirection: 'row', marginTop: hp(5)}}>
-          <TouchableOpacity>
-            <ChatLogo style={{marginLeft: wp(5), position: 'absolute'}} />
-            <Text
-              style={[
-                styles.logotext,
-                {marginTop: hp(5.5), marginLeft: wp(5)},
-              ]}>
-              Chatline
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <CallLogo style={{marginLeft: wp(30), position: 'absolute'}} />
-            <Text
-              style={[
-                styles.logotext,
-                {marginTop: hp(5.5), marginLeft: wp(26)},
-              ]}>
-              iCall helpline
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <MessageLogo style={{marginLeft: wp(55), position: 'absolute'}} />
-            <Text
-              style={[
-                styles.logotext,
-                {marginTop: hp(5.5), marginLeft: wp(56.2)},
-              ]}>
-              Email
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <HelplineLogo style={{marginLeft: wp(77), position: 'absolute'}} />
-          </TouchableOpacity>
-        </View>
-        <View style={{marginTop: hp(9), marginBottom: hp(26)}}>
-        {loading ? 
+      <View style={{flexDirection: 'row'}}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <LoginArrow
+            style={{
+              marginTop: hp(5),
+              marginLeft: wp(5),
+            }}
+          />
+        </TouchableOpacity>
+        <Text style={[styles.sosText]}>SOS</Text>
+      </View>
+      <View style={{flexDirection: 'row', marginTop: hp(5)}}>
+        <TouchableOpacity>
+          <ChatLogo style={{marginLeft: wp(5), position: 'absolute'}} />
+          <Text
+            style={[styles.logotext, {marginTop: hp(5.5), marginLeft: wp(5)}]}>
+            Chatline
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <CallLogo style={{marginLeft: wp(30), position: 'absolute'}} />
+          <Text
+            style={[styles.logotext, {marginTop: hp(5.5), marginLeft: wp(26)}]}>
+            iCall helpline
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <MessageLogo style={{marginLeft: wp(55), position: 'absolute'}} />
+          <Text
+            style={[
+              styles.logotext,
+              {marginTop: hp(5.5), marginLeft: wp(56.2)},
+            ]}>
+            Email
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <HelplineLogo style={{marginLeft: wp(77), position: 'absolute'}} />
+        </TouchableOpacity>
+      </View>
+      <View style={{marginTop: hp(9), marginBottom: hp(26)}}>
+        {loading ? (
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />
           </View>
-          :
+        ) : (
           <FlatList
             data={content}
             numColumns={2}
@@ -117,7 +111,10 @@ const Sos = ({navigation}: any) => {
                       navigation.navigate('Anxiety', {name, id});
                     }}>
                     <View
-                      style={[styles.item, {backgroundColor: item.backgroundColor}]}>
+                      style={[
+                        styles.item,
+                        {backgroundColor: item.backgroundColor},
+                      ]}>
                       <Text style={styles.title}>{item.topic}</Text>
                       <Image
                         style={{
@@ -136,8 +133,8 @@ const Sos = ({navigation}: any) => {
               );
             }}
             keyExtractor={(item: any) => item.id}
-          />}
-        </View>
+          />
+        )}
       </View>
     </SafeAreaView>
   );
@@ -178,8 +175,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop:hp(30),
-    alignItems:'center',
+    marginTop: hp(30),
+    alignItems: 'center',
     justifyContent: 'center',
   },
 });

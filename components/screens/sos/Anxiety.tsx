@@ -21,14 +21,15 @@ const Anxiety = ({navigation, route}: any) => {
   const [loading, setLoading] = useState(false);
   let cnt = 0;
 
-  async function getData(id) {
+  async function getData(id: any) {
     try {
       setLoading(true);
-      const data = await getSosInData({id});
+      const data = await getSosInData(id);
       const arr = data.data;
       setContent(arr);
       setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   }

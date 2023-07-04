@@ -16,7 +16,7 @@ import {useDispatch} from 'react-redux';
 import {setUserData} from '../../redux/Index';
 
 const EditProfile = ({navigation, route}: any) => {
-  const dataNumber = JSON.stringify(route.params.number);
+  const dataNumber = route.params.number;
   const dispatch = useDispatch();
   const [number, onChangeNumber] = React.useState('');
   const updateProfile = () => {
@@ -36,80 +36,21 @@ const EditProfile = ({navigation, route}: any) => {
             onPress={() => {
               navigation.navigate('ProfileScreen');
             }}>
-            <ProfileArrow
-              style={{
-                marginLeft: wp(4),
-                marginTop: hp(5),
-                fontSize: wp(10),
-                color: '#FCFDFF',
-              }}
-            />
+            <ProfileArrow style={styles.profileArrow} />
           </TouchableOpacity>
-          <Text
-            style={{
-              marginLeft: wp(4),
-              marginTop: wp(6.4),
-              color: '#FCFDFF',
-              fontSize: wp(7),
-              fontWeight: '600',
-              fontStyle: 'normal',
-              fontFamily: 'Lato',
-            }}>
-            Edit Profile
-          </Text>
+          <Text style={styles.editProfile}>Edit Profile</Text>
         </View>
-        <View>
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop: hp(2),
-            }}>
-            <ProfilePage />
-            <TouchableOpacity onPress={() => {}}>
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginTop: hp(2),
-                  width: wp(30),
-                  height: hp(5),
-                  borderColor: '#FCFDFF',
-                  borderWidth: wp(0.3),
-                }}>
-                <Text
-                  style={{
-                    color: '#FCFDFF',
-                    fontSize: wp(3.5),
-                    fontFamily: 'Lato',
-                    fontWeight: '600',
-                  }}>
-                  Change Picture
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.profilePage}>
+          <ProfilePage />
+          <TouchableOpacity onPress={() => {}} style={styles.changePictureBox}>
+            <Text style={styles.changePictureText}>Change Picture</Text>
+          </TouchableOpacity>
+          {/* </View> */}
         </View>
       </View>
       <View>
         <View>
-          <View
-            style={{
-              flexDirection: 'row',
-              marginLeft: wp(5),
-              marginTop: hp(2),
-            }}>
-            <Text
-              style={{
-                color: '#212126',
-                fontFamily: 'Lato',
-                fontStyle: 'normal',
-                fontWeight: '500',
-                fontSize: wp(4.5),
-              }}>
-              Phone Number
-            </Text>
-          </View>
+          <Text style={styles.phoneNumberText}>Phone Number</Text>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <TextInput
               style={styles.input}
@@ -117,6 +58,7 @@ const EditProfile = ({navigation, route}: any) => {
               value={number}
               placeholder={dataNumber}
               keyboardType="numeric"
+              placeholderTextColor={'#000000'}
             />
           </View>
         </View>
@@ -125,33 +67,15 @@ const EditProfile = ({navigation, route}: any) => {
         <TouchableOpacity
           onPress={() => {
             updateProfile();
-          }}>
-          <View
-            style={{
-              width: wp(90),
-              height: hp(6),
-              backgroundColor: '#8E97FE',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: wp(1),
-              marginTop: hp(2),
-            }}>
-            <Text
-              style={{
-                color: '#FCFDFF',
-                fontFamily: 'Lato',
-                fontWeight: '900',
-                fontStyle: 'normal',
-                fontSize: wp(4),
-              }}>
-              Update Profile
-            </Text>
-          </View>
+          }}
+          style={styles.updateProfileBox}>
+          <Text style={styles.updateProfileText}>Update Profile</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -181,5 +105,67 @@ const styles = StyleSheet.create({
     borderRadius: wp(0.5),
     backgroundColor: '#8E97FE',
   },
+  editProfile: {
+    marginLeft: wp(4),
+    marginTop: wp(6.4),
+    color: '#FCFDFF',
+    fontSize: wp(7),
+    fontWeight: '600',
+    fontStyle: 'normal',
+    fontFamily: 'Lato',
+  },
+  profileArrow: {
+    marginLeft: wp(4),
+    marginTop: hp(5),
+    fontSize: wp(10),
+    color: '#FCFDFF',
+  },
+  profilePage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: hp(2),
+  },
+  changePictureBox: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: hp(2),
+    width: wp(30),
+    height: hp(5),
+    borderColor: '#FCFDFF',
+    borderWidth: wp(0.3),
+  },
+  changePictureText: {
+    color: '#FCFDFF',
+    fontSize: wp(3.5),
+    fontFamily: 'Lato',
+    fontWeight: '600',
+  },
+  phoneNumberText: {
+    flexDirection: 'row',
+    marginLeft: wp(5),
+    marginTop: hp(2),
+    color: '#212126',
+    fontFamily: 'Lato',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: wp(4.5),
+  },
+  updateProfileBox: {
+    width: wp(90),
+    height: hp(6),
+    backgroundColor: '#8E97FE',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: wp(1),
+    marginTop: hp(2),
+  },
+  updateProfileText: {
+    color: '#FCFDFF',
+    fontFamily: 'Lato',
+    fontWeight: '900',
+    fontStyle: 'normal',
+    fontSize: wp(4),
+  },
 });
+
 export default EditProfile;
