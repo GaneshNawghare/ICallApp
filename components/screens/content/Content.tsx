@@ -21,6 +21,7 @@ const Content = ({navigation}: any) => {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [showNetworkError, setShowNetworkError] = useState(false);
 
   const getData = async () => {
     try {
@@ -31,6 +32,7 @@ const Content = ({navigation}: any) => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
+      setShowNetworkError(true);
       console.log('Error in getData', error);
     }
   }
@@ -68,6 +70,10 @@ const Content = ({navigation}: any) => {
         <Text style={[styles.sosText]}>Content</Text>
       </View>
       <View style={{marginTop: hp(4), marginBottom: hp(16)}}>
+        <View style={{justifyContent:'center',alignItems:'center'}}>
+          {loading && <Text>Loading...</Text>}
+          {!loading && showNetworkError && <Text>Network Error</Text>}
+        </View>
         {loading ? (
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />

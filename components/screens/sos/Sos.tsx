@@ -26,6 +26,7 @@ const Sos = ({navigation}: any) => {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [showNetworkError, setShowNetworkError] = useState(false);
 
   const getData = async () => {
     try {
@@ -36,7 +37,8 @@ const Sos = ({navigation}: any) => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.log('Error in getData',error);
+      setShowNetworkError(true);
+      console.log('Error in getData', error);
     }
   };
 
@@ -65,11 +67,10 @@ const Sos = ({navigation}: any) => {
           />
         </TouchableOpacity>
         <ScrollView
-          style={{marginRight:wp(9)}}
+          style={{marginRight: wp(9)}}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }>
-        </ScrollView>
+          }></ScrollView>
         <Text style={[styles.sosText]}>SOS</Text>
       </View>
       <View style={{flexDirection: 'row', marginTop: hp(5)}}>
@@ -102,6 +103,10 @@ const Sos = ({navigation}: any) => {
         </TouchableOpacity>
       </View>
       <View style={{marginTop: hp(9), marginBottom: hp(13)}}>
+        <View style={{justifyContent:'center',alignItems:'center'}}>
+          {loading && <Text>Loading...</Text>}
+          {!loading && showNetworkError && <Text>Network Error</Text>}
+        </View>
         {loading ? (
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />
@@ -125,10 +130,7 @@ const Sos = ({navigation}: any) => {
                       {backgroundColor: item.backgroundColor},
                     ]}>
                     <Text style={styles.title}>{item.topic}</Text>
-                    <Image
-                      style={styles.imgStyle}
-                      source={{uri: imageURI}}
-                    />
+                    <Image style={styles.imgStyle} source={{uri: imageURI}} />
                   </TouchableOpacity>
                 </View>
               );
