@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   FlatList,
   SafeAreaView,
+  ScrollView,
+  RefreshControl,
   Image,
   ActivityIndicator,
 } from 'react-native';
@@ -21,10 +23,9 @@ import HelplineLogo from '../../assests/svg/HelplineLogo';
 import {getSosData} from '../../../axios';
 
 const Sos = ({navigation}: any) => {
-  const Array = ['#E6672D', '#F9CF7D', '#6AB58E', '#8E97FE'];
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
-  let Index = 0;
+  const [refreshing, setRefreshing] = useState(false);
 
   const getData = async () => {
     try {
@@ -35,12 +36,18 @@ const Sos = ({navigation}: any) => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      console.log('Error in getData',error);
     }
   };
 
   useEffect(() => {
     getData();
+  }, []);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    getData();
+    setRefreshing(false);
   }, []);
 
   return (
@@ -57,6 +64,12 @@ const Sos = ({navigation}: any) => {
             }}
           />
         </TouchableOpacity>
+        <ScrollView
+          style={{marginRight:wp(9)}}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }>
+        </ScrollView>
         <Text style={[styles.sosText]}>SOS</Text>
       </View>
       <View style={{flexDirection: 'row', marginTop: hp(5)}}>
@@ -88,7 +101,7 @@ const Sos = ({navigation}: any) => {
           <HelplineLogo style={{marginLeft: wp(77), position: 'absolute'}} />
         </TouchableOpacity>
       </View>
-      <View style={{marginTop: hp(9), marginBottom: hp(26)}}>
+      <View style={{marginTop: hp(9), marginBottom: hp(13)}}>
         {loading ? (
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />
@@ -99,9 +112,6 @@ const Sos = ({navigation}: any) => {
             numColumns={2}
             renderItem={({item}: any) => {
               const name = item.topic;
-              if (Index == Array.length) {
-                Index = 0;
-              }
               const id = item._id;
               var imageURI = item.uploadImage;
               return (
@@ -109,25 +119,16 @@ const Sos = ({navigation}: any) => {
                   <TouchableOpacity
                     onPress={() => {
                       navigation.navigate('Anxiety', {name, id});
-                    }}>
-                    <View
-                      style={[
-                        styles.item,
-                        {backgroundColor: item.backgroundColor},
-                      ]}>
-                      <Text style={styles.title}>{item.topic}</Text>
-                      <Image
-                        style={{
-                          position: 'absolute',
-                          width: 71,
-                          height: 71,
-                          bottom: 2,
-                          right: 2,
-                        }}
-                        source={{uri: imageURI}}
-                        // style={{position:'absolute',bottom:0,right:0}}
-                      />
-                    </View>
+                    }}
+                    style={[
+                      styles.item,
+                      {backgroundColor: item.backgroundColor},
+                    ]}>
+                    <Text style={styles.title}>{item.topic}</Text>
+                    <Image
+                      style={styles.imgStyle}
+                      source={{uri: imageURI}}
+                    />
                   </TouchableOpacity>
                 </View>
               );
@@ -178,6 +179,13 @@ const styles = StyleSheet.create({
     marginTop: hp(30),
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  imgStyle: {
+    position: 'absolute',
+    width: 71,
+    height: 71,
+    bottom: 2,
+    right: 2,
   },
 });
 export default Sos;

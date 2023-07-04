@@ -5,6 +5,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   FlatList,
+  ScrollView,
+  RefreshControl,
+  SafeAreaView,
   Image,
   ActivityIndicator,
 } from 'react-native';
@@ -19,7 +22,7 @@ const ContentInner = ({navigation, route}: any) => {
   const parentId = route.params.id;
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [refreshing, setRefreshing] = useState(false);
   async function getData(id: any) {
     try {
       setLoading(true);
@@ -37,8 +40,14 @@ const ContentInner = ({navigation, route}: any) => {
     getData(parentId);
   }, [parentId]);
 
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    getData(parentId);
+    setRefreshing(false);
+  }, []);
+
   return (
-    <View>
+    <SafeAreaView>
       <View style={{flexDirection: 'row'}}>
         <TouchableOpacity
           onPress={() => {
@@ -51,9 +60,15 @@ const ContentInner = ({navigation, route}: any) => {
             }}
           />
         </TouchableOpacity>
-        <Text style={[styles.sosText]}>{route.params.name}</Text>
+        <ScrollView
+          style={{marginRight:wp(8)}}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }>
+            <Text style={[styles.sosText]}>{route.params.name}</Text>
+        </ScrollView>
       </View>
-      <View style={{marginTop: hp(4), marginBottom: hp(24)}}>
+      <View style={{marginTop: hp(2), marginBottom: hp(24)}}>
       {loading ? 
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />
@@ -107,7 +122,7 @@ const ContentInner = ({navigation, route}: any) => {
             </TouchableOpacity> */}
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -145,6 +160,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: wp(5),
+    width:wp(80),
     fontFamily: 'Lato',
     fontStyle: 'normal',
     fontWeight: '600',
@@ -155,14 +171,20 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontFamily: 'Lato',
     color: '#212126',
-    position: 'absolute',
     marginTop: hp(3),
-    marginLeft: wp(15),
+    marginLeft: wp(8),
   },
   container: {
     flex: 1,
     marginTop:hp(30),
     alignItems:'center',
+    justifyContent: 'center',
+  },
+  scrollView: {
+    flex: 1,
+    marginTop: hp(1),
+    backgroundColor: 'pink',
+    alignItems: 'center',
     justifyContent: 'center',
   },
 });

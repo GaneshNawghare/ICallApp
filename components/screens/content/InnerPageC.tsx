@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Text,
   View,
   TouchableOpacity,
   StyleSheet,
+  StatusBar,
+  ScrollView,
+  RefreshControl,
+  SafeAreaView,
   ActivityIndicator,
 } from 'react-native';
 import LoginArrow from '../../assests/svg/LoginArrow';
@@ -12,17 +16,44 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {WebView} from 'react-native-webview';
+import { getContentInOneData, getContentInnerData } from '../../../axios';
 
 const InnerPageC = ({navigation, route}: any) => {
   const [loading, setLoading] = useState(true);
+  const [htmlText, setHtmlText] = useState('');
+  const [refreshing, setRefreshing] = useState(false);
+  const id = route.params.id
 
-  setTimeout(() => {
-    setLoading(false);
-  }, 1000);
+  async function getData(id: any) {
+    try {
+      setLoading(true);
+      const {data} = await getContentInOneData(id);
+      setHtmlText(data.textArea)
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log('Error in getData (ContentInner)',error);
+    }
+  }
+
+  useEffect(() => {
+    getData(id);
+  }, [id]);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    getData(id);
+    setRefreshing(false);
+  }, []);
 
   return (
-    <View>
-      <View style={{flexDirection: 'row'}}>
+    <SafeAreaView style={{width:wp(100),height:hp(100),backgroundColor:'#E1F0E8'}}>
+      <StatusBar
+          animated={true}
+          backgroundColor="#E1F0E8"
+          barStyle="dark-content"
+        />
+      <View style={{flexDirection: 'row',width:wp(96)}}>
         <TouchableOpacity
           onPress={() => {
             navigation.goBack();
@@ -34,7 +65,13 @@ const InnerPageC = ({navigation, route}: any) => {
             }}
           />
         </TouchableOpacity>
-        <Text style={[styles.sosText]}>{route.params.name}</Text>
+        <ScrollView
+          style={{marginRight:wp(5)}}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }>
+          <Text style={[styles.sosText]}>{route.params.name}</Text>
+        </ScrollView>
       </View>
       {loading ? (
         <View style={[styles.container]}>
@@ -53,13 +90,13 @@ const InnerPageC = ({navigation, route}: any) => {
               originWhitelist={['*']}
               style={styles.webView}
               source={{
-                html: `<font style="font-size: 40px;">${route.params.stringHtml}</font>`,
+                html: `<font style="font-size: 40px;">${htmlText}</font>`,
               }}
             />
           </View>
         </>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -69,17 +106,15 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontFamily: 'Lato',
     color: '#212126',
-    position: 'absolute',
     marginTop: hp(3),
-    marginLeft: wp(15),
+    marginLeft: wp(8),
   },
   webView: {
     fontWeight: '700',
-    backgroundColor: `#f5f5f5`,
+    backgroundColor: `#E1F0E8`,
   },
   container: {
     flex: 1,
-    marginTop: hp(40),
     alignItems: 'center',
     justifyContent: 'center',
   },

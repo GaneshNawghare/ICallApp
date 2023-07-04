@@ -5,6 +5,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   FlatList,
+  ScrollView,
+  RefreshControl,
   Image,
   ActivityIndicator,
 } from 'react-native';
@@ -18,8 +20,9 @@ import {getContentData} from '../../../axios';
 const Content = ({navigation}: any) => {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
-  async function getData() {
+  const getData = async () => {
     try {
       setLoading(true);
       const data = await getContentData();
@@ -36,6 +39,12 @@ const Content = ({navigation}: any) => {
     getData();
   }, []);
 
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    getData();
+    setRefreshing(false);
+  }, []);
+
   return (
     <View>
       <View style={{flexDirection: 'row'}}>
@@ -50,6 +59,12 @@ const Content = ({navigation}: any) => {
             }}
           />
         </TouchableOpacity>
+        <ScrollView
+          style={{marginRight:wp(9)}}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }>
+        </ScrollView>
         <Text style={[styles.sosText]}>Content</Text>
       </View>
       <View style={{marginTop: hp(4), marginBottom: hp(16)}}>

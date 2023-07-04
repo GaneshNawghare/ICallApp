@@ -6,6 +6,8 @@ import {
   StyleSheet,
   FlatList,
   Image,
+  ScrollView,
+  RefreshControl,
   ActivityIndicator,
 } from 'react-native';
 import LoginArrow from '../../assests/svg/LoginArrow';
@@ -19,9 +21,9 @@ const Anxiety = ({navigation, route}: any) => {
   const parentId = route.params.id;
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
-  let cnt = 0;
+  const [refreshing, setRefreshing] = useState(false);
 
-  async function getData(id: any) {
+  const getData = async (id: any) => {
     try {
       setLoading(true);
       const data = await getSosInData(id);
@@ -38,6 +40,12 @@ const Anxiety = ({navigation, route}: any) => {
     getData(parentId);
   }, []);
 
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    getData(parentId);
+    setRefreshing(false);
+  }, []);
+
   return (
     <View>
       <View style={{flexDirection: 'row'}}>
@@ -52,9 +60,15 @@ const Anxiety = ({navigation, route}: any) => {
             }}
           />
         </TouchableOpacity>
-        <Text style={[styles.sosText]}>{route.params.name}</Text>
+        <ScrollView
+          style={{marginRight:wp(8)}}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }>
+            <Text style={[styles.sosText]}>{route.params.name}</Text>
+        </ScrollView>
       </View>
-      <View style={{marginTop: hp(4), marginBottom: hp(28)}}>
+      <View style={{marginTop: hp(1), marginBottom: hp(28)}}>
       {loading ? 
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />
@@ -63,7 +77,6 @@ const Anxiety = ({navigation, route}: any) => {
         <FlatList
           data={content}
           renderItem={({item}: any) => {
-            cnt++;
             const name = item.topic;
             const id = item._id;
             const stringHtml = item.textArea;
@@ -90,27 +103,23 @@ const Anxiety = ({navigation, route}: any) => {
           }}
           keyExtractor={(item: any) => item._id}
         />}
-        <View
+        {/* <View
           style={{
             justifyContent: 'center',
             position: 'absolute',
             marginTop: hp(80),
             marginLeft: wp(35),
             alignItems: 'center',
-          }}>
-          {cnt > 9 ? (
-            <TouchableOpacity
-              style={{justifyContent: 'center', alignItems: 'center'}}>
-              <View style={[styles.viewMore]}>
+          }}> */}
+          {/* <TouchableOpacity
+              style={[styles.viewMore,{justifyContent: 'center', alignItems: 'center'}]}>
                 <Text style={[styles.viewMoreText]}>View more</Text>
                 <Image
                   source={require('../sos/jpg/arrow_back_ios_new.png')}
                   style={{marginLeft: wp(2)}}
-                />
-              </View>
-            </TouchableOpacity>
-          ) : null}
-        </View>
+                /> 
+          </TouchableOpacity> */}
+        {/* </View> */}
       </View>
     </View>
   );
@@ -150,6 +159,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: wp(5),
+    width:wp(80),
     fontFamily: 'Lato',
     fontStyle: 'normal',
     fontWeight: '600',
@@ -160,9 +170,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontFamily: 'Lato',
     color: '#212126',
-    position: 'absolute',
     marginTop: hp(3),
-    marginLeft: wp(15),
+    marginLeft: wp(8),
   },
   container: {
     flex: 1,
