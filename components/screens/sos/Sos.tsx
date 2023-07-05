@@ -35,12 +35,14 @@ const Sos = ({navigation}: any) => {
       const arr = data.data.resp;
       setContent(arr);
       setLoading(false);
+      setShowNetworkError(false)
     } catch (error) {
       setLoading(false);
       setShowNetworkError(true);
       console.log('Error in getData', error);
     }
   };
+  
 
   useEffect(() => {
     getData();
@@ -104,8 +106,8 @@ const Sos = ({navigation}: any) => {
       </View>
       <View style={{marginTop: hp(9), marginBottom: hp(13)}}>
         <View style={{justifyContent:'center',alignItems:'center'}}>
-          {loading && <Text>Loading...</Text>}
-          {!loading && showNetworkError && <Text>Network Error</Text>}
+          {loading && <Text style={{color:'green'}}>Loading...</Text>}
+          {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
         </View>
         {loading ? (
           <View style={[styles.container]}>

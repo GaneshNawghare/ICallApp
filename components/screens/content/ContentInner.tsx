@@ -23,7 +23,25 @@ const ContentInner = ({navigation, route}: any) => {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [showNetworkError, setShowNetworkError] = useState(false);
+
+
   async function getData(id: any) {
+    try {
+      setLoading(true);
+      const data = await getContentInnerData(id);
+      const arr = data.data;
+      setContent(arr);
+      setLoading(false);
+      setShowNetworkError(false)
+    } catch (error) {
+      setLoading(false);
+      setShowNetworkError(true);
+      console.log('Error in getData (ContentInner)',error);
+    }
+  }
+
+  async function getOneData(id: any) {
     try {
       setLoading(true);
       const data = await getContentInnerData(id);
@@ -39,6 +57,10 @@ const ContentInner = ({navigation, route}: any) => {
   useEffect(() => {
     getData(parentId);
   }, [parentId]);
+
+  // useEffect(() => {
+  //   getOneData(parentId);
+  // }, [parentId]);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -69,6 +91,10 @@ const ContentInner = ({navigation, route}: any) => {
         </ScrollView>
       </View>
       <View style={{marginTop: hp(2), marginBottom: hp(24)}}>
+      <View style={{justifyContent:'center',alignItems:'center'}}>
+          {loading && <Text style={{color:'green'}}>Loading...</Text>}
+          {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
+      </View>
       {loading ? 
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />

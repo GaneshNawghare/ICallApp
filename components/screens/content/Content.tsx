@@ -30,6 +30,7 @@ const Content = ({navigation}: any) => {
       const arr = data.data.resp;
       setContent(arr);
       setLoading(false);
+      setShowNetworkError(false)
     } catch (error) {
       setLoading(false);
       setShowNetworkError(true);
@@ -71,8 +72,8 @@ const Content = ({navigation}: any) => {
       </View>
       <View style={{marginTop: hp(4), marginBottom: hp(16)}}>
         <View style={{justifyContent:'center',alignItems:'center'}}>
-          {loading && <Text>Loading...</Text>}
-          {!loading && showNetworkError && <Text>Network Error</Text>}
+          {loading && <Text style={{color:'green'}}>Loading...</Text>}
+          {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
         </View>
         {loading ? (
           <View style={[styles.container]}>

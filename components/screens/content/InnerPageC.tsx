@@ -16,12 +16,13 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {WebView} from 'react-native-webview';
-import { getContentInOneData, getContentInnerData } from '../../../axios';
+import { getContentInOneData } from '../../../axios';
 
 const InnerPageC = ({navigation, route}: any) => {
   const [loading, setLoading] = useState(true);
   const [htmlText, setHtmlText] = useState('');
   const [refreshing, setRefreshing] = useState(false);
+  const [showNetworkError, setShowNetworkError] = useState(false);
   const id = route.params.id
 
   async function getData(id: any) {
@@ -30,8 +31,10 @@ const InnerPageC = ({navigation, route}: any) => {
       const {data} = await getContentInOneData(id);
       setHtmlText(data.textArea)
       setLoading(false);
+      setShowNetworkError(false)
     } catch (error) {
       setLoading(false);
+      setShowNetworkError(true);
       console.log('Error in getData (ContentInner)',error);
     }
   }
@@ -73,6 +76,10 @@ const InnerPageC = ({navigation, route}: any) => {
           <Text style={[styles.sosText]}>{route.params.name}</Text>
         </ScrollView>
       </View>
+      <View style={{justifyContent:'center',alignItems:'center'}}>
+          {loading && <Text style={{color:'green'}}>Loading...</Text>}
+          {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
+      </View>
       {loading ? (
         <View style={[styles.container]}>
           <ActivityIndicator size="large" color="#0000ff" />
@@ -90,9 +97,7 @@ const InnerPageC = ({navigation, route}: any) => {
               originWhitelist={['*']}
               style={styles.webView}
               hasZoom={false}
-              source={{
-                html: `<font style="font-size: 40px;">${htmlText}</font>`,
-              }}
+              source={{ html: `<font size="+10">${htmlText}</font>`}}
             />
           </View>
         </>

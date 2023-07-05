@@ -22,6 +22,7 @@ const InnerPage = ({navigation, route}: any) => {
   const [loading, setLoading] = useState(true);
   const [htmlText, setHtmlText] = useState('');
   const [refreshing, setRefreshing] = useState(false);
+  const [showNetworkError, setShowNetworkError] = useState(false);
   const id = route.params.id;
 
   async function getData(id: any) {
@@ -30,8 +31,10 @@ const InnerPage = ({navigation, route}: any) => {
       const {data} = await getSosInOneData(id);
       setHtmlText(data.textArea);
       setLoading(false);
+      setShowNetworkError(false)
     } catch (error) {
       setLoading(false);
+      setShowNetworkError(true);
       console.log('Error in getData (ContentInner)', error);
     }
   }
@@ -73,6 +76,10 @@ const InnerPage = ({navigation, route}: any) => {
           }>
           <Text style={[styles.sosText]}>{route.params.name}</Text>
         </ScrollView>
+      </View>
+      <View style={{justifyContent:'center',alignItems:'center'}}>
+          {loading && <Text style={{color:'green'}}>Loading...</Text>}
+          {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
       </View>
       {loading ? (
         <View style={[styles.container]}>

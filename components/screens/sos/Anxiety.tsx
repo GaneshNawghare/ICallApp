@@ -22,6 +22,7 @@ const Anxiety = ({navigation, route}: any) => {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [showNetworkError, setShowNetworkError] = useState(false);
 
   const getData = async (id: any) => {
     try {
@@ -30,8 +31,10 @@ const Anxiety = ({navigation, route}: any) => {
       const arr = data.data;
       setContent(arr);
       setLoading(false);
+      setShowNetworkError(false)
     } catch (error) {
       setLoading(false);
+      setShowNetworkError(true);
       console.log(error);
     }
   }
@@ -69,6 +72,10 @@ const Anxiety = ({navigation, route}: any) => {
         </ScrollView>
       </View>
       <View style={{marginTop: hp(1), marginBottom: hp(28)}}>
+      <View style={{justifyContent:'center',alignItems:'center'}}>
+          {loading && <Text style={{color:'green'}}>Loading...</Text>}
+          {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
+      </View>
       {loading ? 
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />
