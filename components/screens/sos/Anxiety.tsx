@@ -88,7 +88,7 @@ const Anxiety = ({navigation, route}: any) => {
                       navigation.navigate('InnerPage', {name, id, stringHtml});
                     }}>
                     <View style={[styles.item, {flexDirection: 'row'}]}>
-                      <Text style={styles.title}>
+                      <Text style={styles.title} numberOfLines={1}>
                         {item.order}. {item.topic}
                       </Text>
                       <Image

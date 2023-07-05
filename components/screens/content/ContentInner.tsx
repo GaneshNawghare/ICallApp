@@ -89,7 +89,7 @@ const ContentInner = ({navigation, route}: any) => {
                     }}
                     style={[styles.item, {flexDirection: 'row'}]}
                     >
-                      <Text style={styles.title}>
+                      <Text style={styles.title} numberOfLines={1}>
                         {item.order}. {name}
                       </Text>
                       <Image
@@ -160,7 +160,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: wp(5),
-    width:wp(80),
     fontFamily: 'Lato',
     fontStyle: 'normal',
     fontWeight: '600',
