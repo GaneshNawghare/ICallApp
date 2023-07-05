@@ -41,26 +41,9 @@ const ContentInner = ({navigation, route}: any) => {
     }
   }
 
-  async function getOneData(id: any) {
-    try {
-      setLoading(true);
-      const data = await getContentInnerData(id);
-      const arr = data.data;
-      setContent(arr);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log('Error in getData (ContentInner)',error);
-    }
-  }
-
   useEffect(() => {
     getData(parentId);
   }, [parentId]);
-
-  // useEffect(() => {
-  //   getOneData(parentId);
-  // }, [parentId]);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);

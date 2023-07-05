@@ -21,6 +21,7 @@ import {getSosInOneData} from '../../../axios';
 const InnerPage = ({navigation, route}: any) => {
   const [loading, setLoading] = useState(true);
   const [htmlText, setHtmlText] = useState('');
+  const [topicName, setTopicName] = useState('');
   const [refreshing, setRefreshing] = useState(false);
   const [showNetworkError, setShowNetworkError] = useState(false);
   const id = route.params.id;
@@ -30,6 +31,7 @@ const InnerPage = ({navigation, route}: any) => {
       setLoading(true);
       const {data} = await getSosInOneData(id);
       setHtmlText(data.textArea);
+      setTopicName(data.topic);
       setLoading(false);
       setShowNetworkError(false)
     } catch (error) {
@@ -74,7 +76,7 @@ const InnerPage = ({navigation, route}: any) => {
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
-          <Text style={[styles.sosText]}>{route.params.name}</Text>
+          <Text style={[styles.sosText]}>{topicName}</Text>
         </ScrollView>
       </View>
       <View style={{justifyContent:'center',alignItems:'center'}}>
