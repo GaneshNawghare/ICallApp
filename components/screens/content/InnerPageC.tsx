@@ -45,6 +45,17 @@ const InnerPageC = ({navigation, route}: any) => {
     getData(id);
   }, [id]);
 
+  const htmlContent = `
+    <html>
+      <head>
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
+      </head>
+      <body>
+        ${htmlText}
+      </body>
+    </html>
+  `;
+
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     getData(id);
@@ -98,8 +109,11 @@ const InnerPageC = ({navigation, route}: any) => {
             <WebView
               originWhitelist={['*']}
               style={styles.webView}
-              hasZoom={false}
-              source={{ html: `<font size="+10">${htmlText}</font>`}}
+              javaScriptEnabled={true}
+              domStorageEnabled={true}
+              scalesPageToFit={false}
+              allowsInlineMediaPlayback={true}
+              source={{ html: htmlContent}}
             />
           </View>
         </>
@@ -118,6 +132,7 @@ const styles = StyleSheet.create({
     marginLeft: wp(8),
   },
   webView: {
+    flex: 1,
     fontWeight: '700',
     backgroundColor: `#E1F0E8`,
   },
