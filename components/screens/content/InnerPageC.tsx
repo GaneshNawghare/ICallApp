@@ -98,14 +98,8 @@ const InnerPageC = ({navigation, route}: any) => {
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
       ) : (
-        <>
           <View
-            style={{
-              marginTop: hp(2),
-              marginLeft: wp(5),
-              width: wp(90),
-              height: hp(100),
-            }}>
+            style={styles.webViewBox}>
             <WebView
               originWhitelist={['*']}
               style={styles.webView}
@@ -116,7 +110,6 @@ const InnerPageC = ({navigation, route}: any) => {
               source={{ html: htmlContent}}
             />
           </View>
-        </>
       )}
     </SafeAreaView>
   );
@@ -132,7 +125,6 @@ const styles = StyleSheet.create({
     marginLeft: wp(8),
   },
   webView: {
-    flex: 1,
     fontWeight: '700',
     backgroundColor: `#E1F0E8`,
   },
@@ -140,6 +132,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  webViewBox: {
+    marginTop: hp(2),
+    marginLeft: wp(5),
+    width: wp(90),
+    height: hp(92),
   },
 });
 
