@@ -83,6 +83,7 @@ const InnerPage = ({navigation, route}: any) => {
           <WebView
             originWhitelist={['*']}
             style={styles.webView}
+            hasZoom={false}
             source={{html: `<font size="+10">${htmlText}</font>`}}
           />
         </View>
