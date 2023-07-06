@@ -30,13 +30,13 @@ const Content = ({navigation}: any) => {
       const arr = data.data.resp;
       setContent(arr);
       setLoading(false);
-      setShowNetworkError(false)
+      setShowNetworkError(false);
     } catch (error) {
       setLoading(false);
       setShowNetworkError(true);
       console.log('Error in getData', error);
     }
-  }
+  };
 
   useEffect(() => {
     getData();
@@ -63,17 +63,18 @@ const Content = ({navigation}: any) => {
           />
         </TouchableOpacity>
         <ScrollView
-          style={{marginRight:wp(9)}}
+          style={{marginRight: wp(9)}}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }>
-        </ScrollView>
+          }></ScrollView>
         <Text style={[styles.sosText]}>Content</Text>
       </View>
       <View style={{marginTop: hp(4), marginBottom: hp(16)}}>
-        <View style={{justifyContent:'center',alignItems:'center'}}>
-          {loading && <Text style={{color:'green'}}>Loading...</Text>}
-          {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          {loading && <Text style={{color: 'green'}}>Loading...</Text>}
+          {!loading && showNetworkError && (
+            <Text style={{color: 'red'}}>Network Error</Text>
+          )}
         </View>
         {loading ? (
           <View style={[styles.container]}>
@@ -97,11 +98,22 @@ const Content = ({navigation}: any) => {
                       styles.item,
                       {backgroundColor: item.backgroundColor},
                     ]}>
-                    <Text style={styles.title}>{item.topic}</Text>
-                    <Image
-                      style={styles.imgStyle}
-                      source={{uri: imageURI}}
+                    <View
+                      style={[
+                        styles.square,
+                        {
+                          backgroundColor: item.backgroundColor,
+                          shadowOpacity: wp(0.3),
+                          shadowOffset: {
+                            width: wp(5),
+                            height: hp(-3),
+                          },
+                          shadowRadius: wp(0.3),
+                        },
+                      ]}
                     />
+                    <Text style={styles.title}>{item.topic}</Text>
+                    <Image style={styles.imgStyle} source={{uri: imageURI}} />
                   </TouchableOpacity>
                 </View>
               );
@@ -122,7 +134,15 @@ const styles = StyleSheet.create({
     marginLeft: wp(5.5),
     marginVertical: wp(3),
   },
+  square: {
+    opacity: wp(0.13),
+    width: wp(42),
+    height: hp(20),
+  },
   title: {
+    position: 'absolute',
+    marginLeft: wp(3),
+    marginTop: hp(1),
     fontSize: wp(6),
     fontFamily: 'Lato',
     fontStyle: 'normal',

@@ -35,14 +35,13 @@ const Sos = ({navigation}: any) => {
       const arr = data.data.resp;
       setContent(arr);
       setLoading(false);
-      setShowNetworkError(false)
+      setShowNetworkError(false);
     } catch (error) {
       setLoading(false);
       setShowNetworkError(true);
       console.log('Error in getData', error);
     }
   };
-  
 
   useEffect(() => {
     getData();
@@ -75,39 +74,45 @@ const Sos = ({navigation}: any) => {
           }></ScrollView>
         <Text style={[styles.sosText]}>SOS</Text>
       </View>
-      <View style={{flexDirection: 'row', marginTop: hp(5)}}>
+      <View style={{flexDirection: 'row', marginTop: hp(4)}}>
         <TouchableOpacity>
+          <View style={styles.containerSh}>
           <ChatLogo style={{marginLeft: wp(5), position: 'absolute'}} />
+          </View>
+          {/* <ChatLogo style={{marginLeft: wp(5), position: 'absolute'}} /> */}
           <Text
-            style={[styles.logotext, {marginTop: hp(5.5), marginLeft: wp(5)}]}>
+            style={[styles.logotext, {marginTop: hp(7), marginLeft: wp(5)}]}>
             Chatline
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
           <CallLogo style={{marginLeft: wp(30), position: 'absolute'}} />
           <Text
-            style={[styles.logotext, {marginTop: hp(5.5), marginLeft: wp(26)}]}>
+            style={[styles.logotext, {marginTop: hp(7), marginLeft: wp(26)}]}>
             iCall helpline
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
           <MessageLogo style={{marginLeft: wp(55), position: 'absolute'}} />
           <Text
-            style={[
-              styles.logotext,
-              {marginTop: hp(5.5), marginLeft: wp(56.2)},
-            ]}>
+            style={[styles.logotext, {marginTop: hp(7), marginLeft: wp(56.5)}]}>
             Email
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
           <HelplineLogo style={{marginLeft: wp(77), position: 'absolute'}} />
+          <Text
+            style={[styles.logotext, {marginTop: hp(7), marginLeft: wp(72)}]}>
+            24*7 helpLine
+          </Text>
         </TouchableOpacity>
       </View>
-      <View style={{marginTop: hp(9), marginBottom: hp(13)}}>
-        <View style={{justifyContent:'center',alignItems:'center'}}>
-          {loading && <Text style={{color:'green'}}>Loading...</Text>}
-          {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
+      <View style={{marginTop: hp(10), marginBottom: hp(10)}}>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          {loading && <Text style={{color: 'green'}}>Loading...</Text>}
+          {!loading && showNetworkError && (
+            <Text style={{color: 'red'}}>Network Error</Text>
+          )}
         </View>
         {loading ? (
           <View style={[styles.container]}>
@@ -131,6 +136,20 @@ const Sos = ({navigation}: any) => {
                       styles.item,
                       {backgroundColor: item.backgroundColor},
                     ]}>
+                    <View
+                      style={[
+                        styles.square,
+                        {
+                          backgroundColor: item.backgroundColor,
+                          shadowOpacity: wp(0.3),
+                          shadowOffset: {
+                            width: wp(5),
+                            height: hp(-3),
+                          },
+                          shadowRadius: wp(0.3),
+                        },
+                      ]}
+                    />
                     <Text style={styles.title}>{item.topic}</Text>
                     <Image style={styles.imgStyle} source={{uri: imageURI}} />
                   </TouchableOpacity>
@@ -154,7 +173,18 @@ const styles = StyleSheet.create({
     marginLeft: wp(5.5),
     marginVertical: wp(3),
   },
+  containerSh: {
+    shadowColor: '#000',
+    shadowOffset: { width: wp(5),
+      height: hp(-3) },
+    shadowOpacity: wp(0.5),
+    shadowRadius: wp(0.3),
+    elevation: wp(0.4), // Required for Android
+  },
   title: {
+    position: 'absolute',
+    marginLeft: wp(3),
+    marginTop: hp(1),
     fontSize: wp(6),
     fontFamily: 'Lato',
     fontStyle: 'normal',
@@ -173,7 +203,7 @@ const styles = StyleSheet.create({
   logotext: {
     fontFamily: 'Lato',
     fontSize: wp(3.5),
-    fontWeight: '600',
+    fontWeight: '700',
     fontStyle: 'normal',
     color: '#353D6C',
     position: 'absolute',
@@ -183,6 +213,11 @@ const styles = StyleSheet.create({
     marginTop: hp(30),
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  square: {
+    opacity: wp(0.13),
+    width: wp(42),
+    height: hp(20),
   },
   imgStyle: {
     position: 'absolute',
