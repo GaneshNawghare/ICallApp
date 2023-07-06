@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   StatusBar,
+  Image,
 } from 'react-native';
 import Arrow from '../assests/svg/Arrow';
 import {
@@ -73,7 +74,11 @@ const LandingScreen = ({navigation}: any) => {
           onPress={() => {
             navigation.navigate('Sos');
           }}>
-          <Sos />
+        <Image
+        style={{width:wp(90),height:hp(20),borderRadius:wp(3)}}
+        source={require('./sos/jpg/Frame_1145_(1).png')}
+      />
+          {/* <Sos /> */}
         </TouchableOpacity>
         <Text style={[styles.imageBottomText]}>
           Established for maritime use in formal notation SOS is {'\n'}
@@ -84,7 +89,11 @@ const LandingScreen = ({navigation}: any) => {
           onPress={() => {
             navigation.navigate('Content');
           }}>
-          <Content />
+            <Image
+        style={{width:wp(90),height:hp(20),borderRadius:wp(3)}}
+        source={require('./content/jpg/Frame_1146.png')}
+      />
+          {/* <Content /> */}
         </TouchableOpacity>
         <Text style={[styles.imageBottomText]}>
           Established for maritime use in formal notation SOS is {'\n'}
