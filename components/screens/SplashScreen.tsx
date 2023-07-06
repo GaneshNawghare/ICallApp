@@ -26,11 +26,11 @@ const SplashScreen = ({navigation}: any) => {
       <View
         style={{
           alignItems: 'center',
-          marginTop: wp(30),
+          marginTop: wp(25),
         }}>
         <Text style={[styles.textContainer]}>Hi, Welcome</Text>
         <Text style={[styles.textContainer1]}>to icall Helpline</Text>
-        <SplashScreenImage style={{position: 'absolute', marginTop: wp(38)}} />
+        <SplashScreenImage style={{position: 'absolute', marginTop: wp(34)}} />
       </View>
       <TouchableOpacity
         onPress={() => {
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   bottom: {
     width: wp(90),
     height: hp(10),
-    marginTop: hp(85),
+    marginTop: hp(83),
     borderRadius: wp(10),
     alignItems: 'center',
     marginLeft: wp(5),

@@ -97,7 +97,8 @@ const InnerPageC = ({navigation, route}: any) => {
         <View style={[styles.container]}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
-      ) : (
+      ) : ( 
+        htmlText ?
           <View
             style={styles.webViewBox}>
             <WebView
@@ -109,7 +110,7 @@ const InnerPageC = ({navigation, route}: any) => {
               allowsInlineMediaPlayback={true}
               source={{ html: htmlContent}}
             />
-          </View>
+          </View> : <View style={{justifyContent:'center',alignItems:'center'}}><Text> No Data Available </Text></View>
       )}
     </SafeAreaView>
   );
