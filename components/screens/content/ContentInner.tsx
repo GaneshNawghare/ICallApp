@@ -73,7 +73,7 @@ const ContentInner = ({navigation, route}: any) => {
             <Text style={[styles.sosText]}>{route.params.name}</Text>
         </ScrollView>
       </View>
-      <View style={{marginTop: hp(2), marginBottom: hp(24)}}>
+      <View style={{marginBottom: hp(18)}}>
       <View style={{justifyContent:'center',alignItems:'center'}}>
           {loading && <Text style={{color:'green'}}>Loading...</Text>}
           {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
@@ -82,7 +82,7 @@ const ContentInner = ({navigation, route}: any) => {
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />
           </View>
-          :
+          : ( content.length>0 ?  
         <FlatList
           data={content}
           renderItem={({item}) => {
@@ -111,7 +111,7 @@ const ContentInner = ({navigation, route}: any) => {
             }
           }}
           keyExtractor={(item: any) => item._id}
-        />}
+        />: <View style={{justifyContent:'center',alignItems:'center'}}><Text> No Data Available </Text></View> )}
         <View
           style={{
             justifyContent: 'center',
