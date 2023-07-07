@@ -110,7 +110,7 @@ const InnerPageC = ({navigation, route}: any) => {
               allowsInlineMediaPlayback={true}
               source={{ html: htmlContent}}
             />
-          </View> : <View style={{justifyContent:'center',alignItems:'center'}}><Text> No Data Available </Text></View>
+          </View> : <View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View>
       )}
     </SafeAreaView>
   );

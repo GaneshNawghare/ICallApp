@@ -76,10 +76,7 @@ const Sos = ({navigation}: any) => {
       </View>
       <View style={{flexDirection: 'row', marginTop: hp(4)}}>
         <TouchableOpacity>
-          <View style={styles.containerSh}>
           <ChatLogo style={{marginLeft: wp(5), position: 'absolute'}} />
-          </View>
-          {/* <ChatLogo style={{marginLeft: wp(5), position: 'absolute'}} /> */}
           <Text
             style={[styles.logotext, {marginTop: hp(7), marginLeft: wp(5)}]}>
             Chatline
@@ -118,7 +115,7 @@ const Sos = ({navigation}: any) => {
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />
           </View>
-        ) : (
+        ) : ( content.length>0 ?  
           <FlatList
             data={content}
             numColumns={2}
@@ -157,8 +154,7 @@ const Sos = ({navigation}: any) => {
               );
             }}
             keyExtractor={(item: any) => item.id}
-          />
-        )}
+          />: <View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View> )}
       </View>
     </SafeAreaView>
   );
@@ -173,12 +169,19 @@ const styles = StyleSheet.create({
     marginLeft: wp(5.5),
     marginVertical: wp(3),
   },
+  squareSh:{
+    width: wp(10),
+    height: hp(3),
+    backgroundColor:'black',
+    opacity: wp(0.1),
+    shadowOpacity:wp(89),
+    marginLeft:wp(5.3),
+  },
   containerSh: {
     shadowColor: '#000',
-    shadowOffset: { width: wp(5),
-      height: hp(-3) },
+    shadowOffset: {width: wp(5), height: hp(-3)},
     shadowOpacity: wp(0.5),
-    shadowRadius: wp(0.3),
+    shadowRadius: wp(0.4),
     elevation: wp(0.4), // Required for Android
   },
   title: {

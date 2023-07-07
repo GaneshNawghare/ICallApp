@@ -111,7 +111,7 @@ const ContentInner = ({navigation, route}: any) => {
             }
           }}
           keyExtractor={(item: any) => item._id}
-        />: <View style={{justifyContent:'center',alignItems:'center'}}><Text> No Data Available </Text></View> )}
+        />: <View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View> )}
         <View
           style={{
             justifyContent: 'center',

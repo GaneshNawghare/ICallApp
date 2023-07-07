@@ -80,7 +80,8 @@ const Content = ({navigation}: any) => {
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />
           </View>
-        ) : (
+        ) : 
+          ( content.length>0 ?  
           <FlatList
             data={content}
             numColumns={2}
@@ -119,8 +120,7 @@ const Content = ({navigation}: any) => {
               );
             }}
             keyExtractor={(item: any) => item.id}
-          />
-        )}
+          />: <View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View> )}
       </View>
     </View>
   );
