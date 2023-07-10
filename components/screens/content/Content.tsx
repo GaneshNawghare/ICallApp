@@ -16,6 +16,7 @@ import {
 } from 'react-native-responsive-screen';
 import LoginArrow from '../../assests/svg/LoginArrow';
 import {getContentData} from '../../../axios';
+import NetWorkError from '../../assests/svg/NetWorkError';
 
 const Content = ({navigation}: any) => {
   const [content, setContent] = useState([]);
@@ -34,6 +35,7 @@ const Content = ({navigation}: any) => {
     } catch (error) {
       setLoading(false);
       setShowNetworkError(true);
+      setContent([]);
       console.log('Error in getData', error);
     }
   };
@@ -71,8 +73,11 @@ const Content = ({navigation}: any) => {
       </View>
       <View style={{marginTop: hp(4), marginBottom: hp(16)}}>
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          {!loading && showNetworkError && (
-            <Text style={{color: 'red'}}>Network Error</Text>
+        {!loading && showNetworkError && (
+            <View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
+            <NetWorkError/>
+            <Text style={{color: 'red',fontWeight:'700',fontFamily:'Lato'}}>Lost Internet Connection</Text>
+            </View>
           )}
         </View>
         {loading ? (
@@ -119,8 +124,8 @@ const Content = ({navigation}: any) => {
               );
             }}
             keyExtractor={(item: any) => item.id}
-          />: <View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View> )}
-      </View>
+            />: showNetworkError?null:<View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View> )}
+        </View>
     </View>
   );
 };

@@ -16,6 +16,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {getSosInData} from '../../../axios';
+import NetWorkError from '../../assests/svg/NetWorkError';
 
 const Anxiety = ({navigation, route}: any) => {
   const parentId = route.params.id;
@@ -36,6 +37,7 @@ const Anxiety = ({navigation, route}: any) => {
     } catch (error) {
       setLoading(false);
       setShowNetworkError(true);
+      setContent([])
       console.log(error);
     }
   }
@@ -74,7 +76,12 @@ const Anxiety = ({navigation, route}: any) => {
       </View>
       <View style={{marginTop: hp(0.5), marginBottom: hp(18)}}>
       <View style={{justifyContent:'center',alignItems:'center'}}>
-          {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
+      {!loading && showNetworkError && (
+            <View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
+            <NetWorkError/>
+            <Text style={{color: 'red',fontWeight:'700',fontFamily:'Lato'}}>Lost Internet Connection</Text>
+            </View>
+          )}
       </View>
       {loading ? 
           <View style={[styles.container]}>
@@ -107,24 +114,7 @@ const Anxiety = ({navigation, route}: any) => {
             }
           }}
           keyExtractor={(item: any) => item._id}
-        /> : <View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View> )}
-        {/* <View
-          style={{
-            justifyContent: 'center',
-            position: 'absolute',
-            marginTop: hp(80),
-            marginLeft: wp(35),
-            alignItems: 'center',
-          }}> */}
-          {/* <TouchableOpacity
-              style={[styles.viewMore,{justifyContent: 'center', alignItems: 'center'}]}>
-                <Text style={[styles.viewMoreText]}>View more</Text>
-                <Image
-                  source={require('../sos/jpg/arrow_back_ios_new.png')}
-                  style={{marginLeft: wp(2)}}
-                /> 
-          </TouchableOpacity> */}
-        {/* </View> */}
+        /> : showNetworkError?null:<View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View>)}
       </View>
     </View>
   );

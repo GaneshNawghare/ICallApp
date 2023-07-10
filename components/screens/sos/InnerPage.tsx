@@ -17,6 +17,7 @@ import {
 } from 'react-native-responsive-screen';
 import {WebView} from 'react-native-webview';
 import {getSosInOneData} from '../../../axios';
+import NetWorkError from '../../assests/svg/NetWorkError';
 
 const InnerPage = ({navigation, route}: any) => {
   const [loading, setLoading] = useState(true);
@@ -40,6 +41,7 @@ const InnerPage = ({navigation, route}: any) => {
     } catch (error) {
       setLoading(false);
       setShowNetworkError(true);
+      setHtmlText('');
       console.log('Error in getData (ContentInner)', error);
     }
   }
@@ -94,7 +96,12 @@ const InnerPage = ({navigation, route}: any) => {
         </ScrollView>
       </View>
       <View style={{justifyContent:'center',alignItems:'center'}}>
-          {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
+      {!loading && showNetworkError && (
+            <View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
+            <NetWorkError/>
+            <Text style={{color: 'red',fontWeight:'700',fontFamily:'Lato'}}>Lost Internet Connection</Text>
+            </View>
+          )}
       </View>
       {loading ? (
         <View style={[styles.container]}>
@@ -112,7 +119,7 @@ const InnerPage = ({navigation, route}: any) => {
             allowsInlineMediaPlayback={true}
             source={{ html: htmlContent}}
           />
-        </View> : <View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View>
+        </View> : showNetworkError?null:<View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View>
       )}
     </SafeAreaView>
   );

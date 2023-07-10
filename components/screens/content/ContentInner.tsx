@@ -17,6 +17,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {getContentInnerData} from '../../../axios';
+import NetWorkError from '../../assests/svg/NetWorkError';
 
 const ContentInner = ({navigation, route}: any) => {
   const parentId = route.params.id;
@@ -38,6 +39,7 @@ const ContentInner = ({navigation, route}: any) => {
     } catch (error) {
       setLoading(false);
       setShowNetworkError(true);
+      setContent([]);
       console.log('Error in getData (ContentInner)',error);
     }
   }
@@ -76,7 +78,12 @@ const ContentInner = ({navigation, route}: any) => {
       </View>
       <View style={{marginBottom: hp(18)}}>
       <View style={{justifyContent:'center',alignItems:'center'}}>
-          {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
+      {!loading && showNetworkError && (
+            <View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
+            <NetWorkError/>
+            <Text style={{color: 'red',fontWeight:'700',fontFamily:'Lato'}}>Lost Internet Connection</Text>
+            </View>
+          )}
       </View>
       {loading ? 
           <View style={[styles.container]}>
@@ -109,8 +116,8 @@ const ContentInner = ({navigation, route}: any) => {
             }
           }}
           keyExtractor={(item: any) => item._id}
-        />: <View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View> )}
-        <View
+          />: showNetworkError?null:<View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'darkBlue'}}> No Data Available </Text></View> )}
+          <View
           style={{
             justifyContent: 'center',
             position: 'absolute',
@@ -118,15 +125,6 @@ const ContentInner = ({navigation, route}: any) => {
             marginLeft: wp(35),
             alignItems: 'center',
           }}>
-            {/* <TouchableOpacity>
-              <View style={[styles.viewMore]}>
-                <Text style={[styles.viewMoreText]}>View more</Text>
-                <Image
-                  source={require('./jpg/arrow_back_ios_new.png')}
-                  style={{marginLeft: wp(2)}}
-                />
-              </View>
-            </TouchableOpacity> */}
         </View>
       </View>
     </SafeAreaView>

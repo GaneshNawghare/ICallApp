@@ -45,7 +45,6 @@ const EditProfile = ({navigation, route}: any) => {
           <TouchableOpacity onPress={() => {}} style={styles.changePictureBox}>
             <Text style={styles.changePictureText}>Change Picture</Text>
           </TouchableOpacity>
-          {/* </View> */}
         </View>
       </View>
       <View>
