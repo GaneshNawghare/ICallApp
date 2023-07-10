@@ -93,7 +93,6 @@ const InnerPageC = ({navigation, route}: any) => {
         </ScrollView>
       </View>
       <View style={{justifyContent:'center',alignItems:'center'}}>
-          {loading && <Text style={{color:'green'}}>Loading...</Text>}
           {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
       </View>
       {loading ? (

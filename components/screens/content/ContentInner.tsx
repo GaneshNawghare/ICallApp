@@ -20,7 +20,6 @@ import {getContentInnerData} from '../../../axios';
 
 const ContentInner = ({navigation, route}: any) => {
   const parentId = route.params.id;
-  console.log("parentId",parentId);
   const [content, setContent] = useState([]);
   const [name, setName] = useState(route.params.name);
   const [loading, setLoading] = useState(false);
@@ -77,7 +76,6 @@ const ContentInner = ({navigation, route}: any) => {
       </View>
       <View style={{marginBottom: hp(18)}}>
       <View style={{justifyContent:'center',alignItems:'center'}}>
-          {loading && <Text style={{color:'green'}}>Loading...</Text>}
           {!loading && showNetworkError && <Text style={{color:'red'}}>Network Error</Text>}
       </View>
       {loading ? 
