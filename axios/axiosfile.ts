@@ -1,5 +1,5 @@
 import axios from 'axios';
-const TIMEOUT_DURATION = 15000; //15 sec
+const TIMEOUT_DURATION = 8000; //15 sec
 // console.log("process",process.env.BACKEND_SOCKET_URL);
 const customAxios = axios.create({
   // baseURL: process.env.BACKEND_SOCKET_URL,
