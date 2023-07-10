@@ -21,10 +21,12 @@ import { getContentInOneData } from '../../../axios';
 const InnerPageC = ({navigation, route}: any) => {
   const [loading, setLoading] = useState(true);
   const [htmlText, setHtmlText] = useState('');
+  const [name, setName] = useState(route.params.name);
+  const [id, setId] = useState('');
   const [topicName, setTopicName] = useState('');
   const [refreshing, setRefreshing] = useState(false);
   const [showNetworkError, setShowNetworkError] = useState(false);
-  const id = route.params.id
+  const id1 = route.params.id
 
   async function getData(id: any) {
     try {
@@ -32,6 +34,7 @@ const InnerPageC = ({navigation, route}: any) => {
       const {data} = await getContentInOneData(id);
       setHtmlText(data.textArea)
       setTopicName(data.topic);
+      setId(data.parentId);
       setLoading(false);
       setShowNetworkError(false)
     } catch (error) {
@@ -42,8 +45,8 @@ const InnerPageC = ({navigation, route}: any) => {
   }
 
   useEffect(() => {
-    getData(id);
-  }, [id]);
+    getData(id1);
+  }, [id1]);
 
   const htmlContent = `
     <html>
@@ -58,7 +61,7 @@ const InnerPageC = ({navigation, route}: any) => {
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    getData(id);
+    getData(id1);
     setRefreshing(false);
   }, []);
 
@@ -72,7 +75,7 @@ const InnerPageC = ({navigation, route}: any) => {
       <View style={{flexDirection: 'row',width:wp(96)}}>
         <TouchableOpacity
           onPress={() => {
-            navigation.goBack();
+            navigation.navigate("ContentInner",{id,name});
           }}>
           <LoginArrow
             style={{

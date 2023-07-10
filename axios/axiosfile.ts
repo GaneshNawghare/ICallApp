@@ -24,7 +24,7 @@ customAxios.interceptors.response.use(
       return response;
     },
     function (error) {
-      if (error.code === 'ECONNABORTED' && error.message.includes('timeout')) {
+      if (error.message.includes('timeout')) {
         // Handle network timeout error
         return Promise.reject(new Error('Network request timed out.'));
       }

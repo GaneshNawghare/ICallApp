@@ -20,7 +20,9 @@ import {getContentInnerData} from '../../../axios';
 
 const ContentInner = ({navigation, route}: any) => {
   const parentId = route.params.id;
+  console.log("parentId",parentId);
   const [content, setContent] = useState([]);
+  const [name, setName] = useState(route.params.name);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [showNetworkError, setShowNetworkError] = useState(false);
@@ -43,7 +45,7 @@ const ContentInner = ({navigation, route}: any) => {
 
   useEffect(() => {
     getData(parentId);
-  }, [parentId]);
+  }, []);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -70,7 +72,7 @@ const ContentInner = ({navigation, route}: any) => {
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
-            <Text style={[styles.sosText]}>{route.params.name}</Text>
+            <Text style={[styles.sosText]}>{name}</Text>
         </ScrollView>
       </View>
       <View style={{marginBottom: hp(18)}}>
@@ -86,15 +88,13 @@ const ContentInner = ({navigation, route}: any) => {
         <FlatList
           data={content}
           renderItem={({item}) => {
-            const name = item.topic;
             const id = item._id;
-            const stringHtml = item.textArea;
             if (parentId === item.parentId) {
               return (
                 <View>
                   <TouchableOpacity
                     onPress={() => {
-                      navigation.navigate('InnerPageC', {name, id, stringHtml});
+                      navigation.navigate('InnerPageC', {id,name});
                     }}
                     style={[styles.item, {flexDirection: 'row'}]}
                     >

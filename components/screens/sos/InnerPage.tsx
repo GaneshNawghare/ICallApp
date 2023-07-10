@@ -20,16 +20,19 @@ import {getSosInOneData} from '../../../axios';
 
 const InnerPage = ({navigation, route}: any) => {
   const [loading, setLoading] = useState(true);
+  const [name, setName] = useState(route.params.name);
   const [htmlText, setHtmlText] = useState('');
   const [topicName, setTopicName] = useState('');
   const [refreshing, setRefreshing] = useState(false);
   const [showNetworkError, setShowNetworkError] = useState(false);
-  const id = route.params.id;
+  const [id, setId] = useState('');
+  const id1 = route.params.id;
 
   async function getData(id: any) {
     try {
       setLoading(true);
       const {data} = await getSosInOneData(id);
+      setId(data.parentId);
       setHtmlText(data.textArea);
       setTopicName(data.topic);
       setLoading(false);
@@ -42,8 +45,8 @@ const InnerPage = ({navigation, route}: any) => {
   }
 
   useEffect(() => {
-    getData(id);
-  }, [id]);
+    getData(id1);
+  }, [id1]);
 
   const htmlContent = `
     <html>
@@ -58,7 +61,7 @@ const InnerPage = ({navigation, route}: any) => {
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    getData(id);
+    getData(id1);
     setRefreshing(false);
   }, []);
 
@@ -73,7 +76,7 @@ const InnerPage = ({navigation, route}: any) => {
       <View style={{flexDirection: 'row', width: wp(95)}}>
         <TouchableOpacity
           onPress={() => {
-            navigation.goBack();
+            navigation.navigate("Anxiety",{id,name});
           }}>
           <LoginArrow
             style={{

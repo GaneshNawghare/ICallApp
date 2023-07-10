@@ -30,7 +30,7 @@ const SplashScreen = ({navigation}: any) => {
         }}>
         <Text style={[styles.textContainer]}>Hi, Welcome</Text>
         <Text style={[styles.textContainer1]}>to icall Helpline</Text>
-        <SplashScreenImage style={{position: 'absolute', marginTop: wp(34)}} />
+        <SplashScreenImage style={{position: 'absolute', marginTop: wp(40)}} />
       </View>
       <TouchableOpacity
         onPress={() => {
