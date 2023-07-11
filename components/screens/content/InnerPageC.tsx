@@ -16,9 +16,9 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {WebView} from 'react-native-webview';
-import { getContentInOneData } from '../../../axios';
+import {getContentInOneData} from '../../../axios';
 import NetWorkError from '../../assests/svg/NetWorkError';
-import NoDataAvailable from '../../assests/svg/NoDataAvailable'
+import NoDataAvailable from '../../assests/svg/NoDataAvailable';
 
 const InnerPageC = ({navigation, route}: any) => {
   const [loading, setLoading] = useState(true);
@@ -28,22 +28,22 @@ const InnerPageC = ({navigation, route}: any) => {
   const [topicName, setTopicName] = useState('');
   const [refreshing, setRefreshing] = useState(false);
   const [showNetworkError, setShowNetworkError] = useState(false);
-  const id1 = route.params.id
+  const id1 = route.params.id;
 
   async function getData(id: any) {
     try {
       setLoading(true);
       const {data} = await getContentInOneData(id);
-      setHtmlText(data.textArea)
+      setHtmlText(data.textArea);
       setTopicName(data.topic);
       setId(data.parentId);
       setLoading(false);
-      setShowNetworkError(false)
+      setShowNetworkError(false);
     } catch (error) {
       setLoading(false);
       setShowNetworkError(true);
       setHtmlText('');
-      console.log('Error in getData (ContentInner)',error);
+      console.log('Error in getData (ContentInner)', error);
     }
   }
 
@@ -69,16 +69,17 @@ const InnerPageC = ({navigation, route}: any) => {
   }, []);
 
   return (
-    <SafeAreaView style={{width:wp(100),height:hp(100),backgroundColor:'#E1F0E8'}}>
+    <SafeAreaView
+      style={{width: wp(100), height: hp(100), backgroundColor: '#E1F0E8'}}>
       <StatusBar
-          animated={true}
-          backgroundColor="#E1F0E8"
-          barStyle="dark-content"
-        />
-      <View style={{flexDirection: 'row',width:wp(96)}}>
+        animated={true}
+        backgroundColor="#E1F0E8"
+        barStyle="dark-content"
+      />
+      <View style={{flexDirection: 'row', width: wp(96)}}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("ContentInner",{id,name});
+            navigation.navigate('ContentInner', {id, name});
           }}>
           <LoginArrow
             style={{
@@ -88,42 +89,54 @@ const InnerPageC = ({navigation, route}: any) => {
           />
         </TouchableOpacity>
         <ScrollView
-          style={{marginRight:wp(5)}}
+          style={{marginRight: wp(5)}}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
           <Text style={[styles.sosText]}>{topicName}</Text>
         </ScrollView>
       </View>
-      <View style={{justifyContent:'center',alignItems:'center'}}>
-      {!loading && showNetworkError && (
-            <View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
-            <NetWorkError/>
-            <Text style={{color: 'red',fontWeight:'700',fontFamily:'Lato'}}>Lost Internet Connection</Text>
-            </View>
-          )}
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        {!loading && showNetworkError && (
+          <View
+            style={{
+              marginTop: hp(25),
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <NetWorkError />
+            <Text style={{color: 'red', fontWeight: '700', fontFamily: 'Lato'}}>
+              Lost Internet Connection
+            </Text>
+          </View>
+        )}
       </View>
       {loading ? (
         <View style={[styles.container]}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
-      ) : ( 
-        htmlText ?
-          <View
-            style={styles.webViewBox}>
-            <WebView
-              originWhitelist={['*']}
-              style={styles.webView}
-              javaScriptEnabled={true}
-              domStorageEnabled={true}
-              scalesPageToFit={false}
-              allowsInlineMediaPlayback={true}
-              source={{ html: htmlContent}}
-            />
-          </View> : showNetworkError?null:<View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
-          <NoDataAvailable/>
+      ) : htmlText ? (
+        <View style={styles.webViewBox}>
+          <WebView
+            originWhitelist={['*']}
+            style={styles.webView}
+            javaScriptEnabled={true}
+            domStorageEnabled={true}
+            scalesPageToFit={false}
+            allowsInlineMediaPlayback={true}
+            source={{html: htmlContent}}
+          />
+        </View>
+      ) : showNetworkError ? null : (
+        <View
+          style={{
+            marginTop: hp(25),
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <NoDataAvailable />
           <View style={styles.noData}>
-          <Text style={{color:'Black'}}> No Data Available </Text>
+            <Text style={{color: 'Black'}}> No Data Available </Text>
           </View>
         </View>
       )}
@@ -144,14 +157,14 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     backgroundColor: `#E1F0E8`,
   },
-  noData:{
-    marginLeft:wp(5),
-    width:wp(50),
-    height:hp(3),
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundColor:'#8E97FE',
-    borderRadius:wp(3)
+  noData: {
+    marginLeft: wp(5),
+    width: wp(50),
+    height: hp(3),
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#8E97FE',
+    borderRadius: wp(3),
   },
   container: {
     flex: 1,

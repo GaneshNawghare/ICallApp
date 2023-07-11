@@ -18,8 +18,7 @@ import {
 import {WebView} from 'react-native-webview';
 import {getSosInOneData} from '../../../axios';
 import NetWorkError from '../../assests/svg/NetWorkError';
-import NoDataAvailable from '../../assests/svg/NoDataAvailable'
-
+import NoDataAvailable from '../../assests/svg/NoDataAvailable';
 
 const InnerPage = ({navigation, route}: any) => {
   const [loading, setLoading] = useState(true);
@@ -39,7 +38,7 @@ const InnerPage = ({navigation, route}: any) => {
       setHtmlText(data.textArea);
       setTopicName(data.topic);
       setLoading(false);
-      setShowNetworkError(false)
+      setShowNetworkError(false);
     } catch (error) {
       setLoading(false);
       setShowNetworkError(true);
@@ -80,7 +79,7 @@ const InnerPage = ({navigation, route}: any) => {
       <View style={{flexDirection: 'row', width: wp(95)}}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Anxiety",{id,name});
+            navigation.navigate('Anxiety', {id, name});
           }}>
           <LoginArrow
             style={{
@@ -90,27 +89,33 @@ const InnerPage = ({navigation, route}: any) => {
           />
         </TouchableOpacity>
         <ScrollView
-          style={{marginLeft:wp(-2)}}
+          style={{marginLeft: wp(-2)}}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
           <Text style={[styles.sosText]}>{topicName}</Text>
         </ScrollView>
       </View>
-      <View style={{justifyContent:'center',alignItems:'center'}}>
-      {!loading && showNetworkError && (
-            <View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
-            <NetWorkError/>
-            <Text style={{color: 'red',fontWeight:'700',fontFamily:'Lato'}}>Lost Internet Connection</Text>
-            </View>
-          )}
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        {!loading && showNetworkError && (
+          <View
+            style={{
+              marginTop: hp(25),
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <NetWorkError />
+            <Text style={{color: 'red', fontWeight: '700', fontFamily: 'Lato'}}>
+              Lost Internet Connection
+            </Text>
+          </View>
+        )}
       </View>
       {loading ? (
         <View style={[styles.container]}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
-      ) : (
-        htmlText ? 
+      ) : htmlText ? (
         <View style={styles.webViewBox}>
           <WebView
             originWhitelist={['*']}
@@ -119,12 +124,19 @@ const InnerPage = ({navigation, route}: any) => {
             domStorageEnabled={true}
             scalesPageToFit={false}
             allowsInlineMediaPlayback={true}
-            source={{ html: htmlContent}}
+            source={{html: htmlContent}}
           />
-        </View> : showNetworkError?null:<View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
-          <NoDataAvailable/>
+        </View>
+      ) : showNetworkError ? null : (
+        <View
+          style={{
+            marginTop: hp(25),
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <NoDataAvailable />
           <View style={styles.noData}>
-          <Text style={{color:'Black'}}> No Data Available </Text>
+            <Text style={{color: 'Black'}}> No Data Available </Text>
           </View>
         </View>
       )}
@@ -142,14 +154,14 @@ const styles = StyleSheet.create({
     marginTop: hp(3),
     marginLeft: wp(8),
   },
-  noData:{
-    marginLeft:wp(5),
-    width:wp(50),
-    height:hp(3),
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundColor:'#8E97FE',
-    borderRadius:wp(3)
+  noData: {
+    marginLeft: wp(5),
+    width: wp(50),
+    height: hp(3),
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#8E97FE',
+    borderRadius: wp(3),
   },
   webView: {
     fontWeight: '700',

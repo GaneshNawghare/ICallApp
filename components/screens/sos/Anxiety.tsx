@@ -17,7 +17,7 @@ import {
 } from 'react-native-responsive-screen';
 import {getSosInData} from '../../../axios';
 import NetWorkError from '../../assests/svg/NetWorkError';
-import NoDataAvailable from '../../assests/svg/NoDataAvailable'
+import NoDataAvailable from '../../assests/svg/NoDataAvailable';
 
 const Anxiety = ({navigation, route}: any) => {
   const parentId = route.params.id;
@@ -34,18 +34,18 @@ const Anxiety = ({navigation, route}: any) => {
       const arr = data.data;
       setContent(arr);
       setLoading(false);
-      setShowNetworkError(false)
+      setShowNetworkError(false);
     } catch (error) {
       setLoading(false);
       setShowNetworkError(true);
-      setContent([])
+      setContent([]);
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     getData(parentId);
-  }, [parentId,name]);
+  }, [parentId, name]);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -68,60 +68,75 @@ const Anxiety = ({navigation, route}: any) => {
           />
         </TouchableOpacity>
         <ScrollView
-          style={{marginRight:wp(8)}}
+          style={{marginRight: wp(8)}}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
-            <Text style={[styles.sosText]}>{name}</Text>
+          <Text style={[styles.sosText]}>{name}</Text>
         </ScrollView>
       </View>
       <View style={{marginTop: hp(0.5), marginBottom: hp(18)}}>
-      <View style={{justifyContent:'center',alignItems:'center'}}>
-      {!loading && showNetworkError && (
-            <View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
-            <NetWorkError/>
-            <Text style={{color: 'red',fontWeight:'700',fontFamily:'Lato'}}>Lost Internet Connection</Text>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          {!loading && showNetworkError && (
+            <View
+              style={{
+                marginTop: hp(25),
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <NetWorkError />
+              <Text
+                style={{color: 'red', fontWeight: '700', fontFamily: 'Lato'}}>
+                Lost Internet Connection
+              </Text>
             </View>
           )}
-      </View>
-      {loading ? 
+        </View>
+        {loading ? (
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />
           </View>
-          :( content.length > 0 ?
-        <FlatList
-          data={content}
-          renderItem={({item}: any) => {
-            const id = item._id;
-            if (parentId === item.parentId) {
-              return (
-                <View>
-                  <TouchableOpacity
-                    onPress={() => {
-                      navigation.navigate('InnerPage', {id, name});
-                    }}>
-                    <View style={[styles.item, {flexDirection: 'row'}]}>
-                      <Text style={styles.title} numberOfLines={1}>
-                        {item.order}. {item.topic}
-                      </Text>
-                      <Image
-                        source={require('./jpg/arrow_back_ios_new_(1)_copy.png')}
-                        style={[styles.arrow]}
-                      />
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              );
-            }
-          }}
-          keyExtractor={(item: any) => item._id}
-        /> : showNetworkError?null:
-        <View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
-          <NoDataAvailable/>
-          <View style={styles.noData}>
-          <Text style={{color:'Black'}}> No Data Available </Text>
+        ) : content.length > 0 ? (
+          <FlatList
+            data={content}
+            renderItem={({item}: any) => {
+              const id = item._id;
+              if (parentId === item.parentId) {
+                return (
+                  <View>
+                    <TouchableOpacity
+                      onPress={() => {
+                        navigation.navigate('InnerPage', {id, name});
+                      }}>
+                      <View style={[styles.item, {flexDirection: 'row'}]}>
+                        <Text style={styles.title} numberOfLines={1}>
+                          {item.order}. {item.topic}
+                        </Text>
+                        <Image
+                          source={require('./jpg/arrow_back_ios_new_(1)_copy.png')}
+                          style={[styles.arrow]}
+                        />
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                );
+              }
+            }}
+            keyExtractor={(item: any) => item._id}
+          />
+        ) : showNetworkError ? null : (
+          <View
+            style={{
+              marginTop: hp(25),
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <NoDataAvailable />
+            <View style={styles.noData}>
+              <Text style={{color: 'Black'}}> No Data Available </Text>
+            </View>
           </View>
-        </View>)}
+        )}
       </View>
     </View>
   );
@@ -136,14 +151,14 @@ const styles = StyleSheet.create({
     marginLeft: wp(5.5),
     marginVertical: wp(3),
   },
-  noData:{
-    marginLeft:wp(5),
-    width:wp(50),
-    height:hp(3),
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundColor:'#8E97FE',
-    borderRadius:wp(3)
+  noData: {
+    marginLeft: wp(5),
+    width: wp(50),
+    height: hp(3),
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#8E97FE',
+    borderRadius: wp(3),
   },
   arrow: {
     position: 'absolute',
@@ -170,7 +185,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: wp(5),
-    width:wp(80),
+    width: wp(80),
     fontFamily: 'Lato',
     fontStyle: 'normal',
     fontWeight: '600',
@@ -186,8 +201,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop:hp(30),
-    alignItems:'center',
+    marginTop: hp(30),
+    alignItems: 'center',
     justifyContent: 'center',
   },
 });

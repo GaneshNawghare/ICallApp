@@ -21,7 +21,7 @@ import CallLogo from '../../assests/svg/CallLogo';
 import MessageLogo from '../../assests/svg/MessageLogo';
 import HelplineLogo from '../../assests/svg/HelplineLogo';
 import NetWorkError from '../../assests/svg/NetWorkError';
-import NoDataAvailable from '../../assests/svg/NoDataAvailable'
+import NoDataAvailable from '../../assests/svg/NoDataAvailable';
 import {getSosData} from '../../../axios';
 
 const Sos = ({navigation}: any) => {
@@ -110,9 +110,17 @@ const Sos = ({navigation}: any) => {
       <View style={{marginTop: hp(10), marginBottom: hp(10)}}>
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
           {!loading && showNetworkError && (
-            <View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
-            <NetWorkError/>
-            <Text style={{color: 'red',fontWeight:'700',fontFamily:'Lato'}}>Lost Internet Connection</Text>
+            <View
+              style={{
+                marginTop: hp(25),
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <NetWorkError />
+              <Text
+                style={{color: 'red', fontWeight: '700', fontFamily: 'Lato'}}>
+                Lost Internet Connection
+              </Text>
             </View>
           )}
         </View>
@@ -120,7 +128,7 @@ const Sos = ({navigation}: any) => {
           <View style={[styles.container]}>
             <ActivityIndicator size="large" color="#0000ff" />
           </View>
-        ) : ( content.length>0 ?  
+        ) : content.length > 0 ? (
           <FlatList
             data={content}
             numColumns={2}
@@ -159,12 +167,20 @@ const Sos = ({navigation}: any) => {
               );
             }}
             keyExtractor={(item: any) => item.id}
-          />: showNetworkError?null:<View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
-          <NoDataAvailable/>
-          <View style={styles.noData}>
-          <Text style={{color:'Black'}}> No Data Available </Text>
+          />
+        ) : showNetworkError ? null : (
+          <View
+            style={{
+              marginTop: hp(25),
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <NoDataAvailable />
+            <View style={styles.noData}>
+              <Text style={{color: 'Black'}}> No Data Available </Text>
+            </View>
           </View>
-        </View>)}
+        )}
       </View>
     </SafeAreaView>
   );
@@ -179,22 +195,22 @@ const styles = StyleSheet.create({
     marginLeft: wp(5.5),
     marginVertical: wp(3),
   },
-  noData:{
-    marginLeft:wp(5),
-    width:wp(50),
-    height:hp(3),
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundColor:'#8E97FE',
-    borderRadius:wp(3)
+  noData: {
+    marginLeft: wp(5),
+    width: wp(50),
+    height: hp(3),
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#8E97FE',
+    borderRadius: wp(3),
   },
-  squareSh:{
+  squareSh: {
     width: wp(10),
     height: hp(3),
-    backgroundColor:'black',
+    backgroundColor: 'black',
     opacity: wp(0.1),
-    shadowOpacity:wp(89),
-    marginLeft:wp(5.3),
+    shadowOpacity: wp(89),
+    marginLeft: wp(5.3),
   },
   containerSh: {
     shadowColor: '#000',
