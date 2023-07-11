@@ -119,7 +119,7 @@ const InnerPageC = ({navigation, route}: any) => {
               allowsInlineMediaPlayback={true}
               source={{ html: htmlContent}}
             />
-          </View> : showNetworkError?null:<View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View>
+          </View> : showNetworkError?null:<View style={styles.noData}><Text style={{color:'Black'}}> No Data Available </Text></View>
       )}
     </SafeAreaView>
   );
@@ -137,6 +137,15 @@ const styles = StyleSheet.create({
   webView: {
     fontWeight: '700',
     backgroundColor: `#E1F0E8`,
+  },
+  noData:{
+    marginLeft:wp(25),
+    width:wp(50),
+    height:hp(3),
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:'#8E97FE',
+    borderRadius:wp(3)
   },
   container: {
     flex: 1,

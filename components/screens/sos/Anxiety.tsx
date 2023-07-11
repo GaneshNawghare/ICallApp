@@ -114,7 +114,7 @@ const Anxiety = ({navigation, route}: any) => {
             }
           }}
           keyExtractor={(item: any) => item._id}
-        /> : showNetworkError?null:<View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View>)}
+        /> : showNetworkError?null:<View style={styles.noData}><Text style={{color:'Black'}}> No Data Available </Text></View>)}
       </View>
     </View>
   );
@@ -128,6 +128,15 @@ const styles = StyleSheet.create({
     height: hp(6),
     marginLeft: wp(5.5),
     marginVertical: wp(3),
+  },
+  noData:{
+    marginLeft:wp(25),
+    width:wp(50),
+    height:hp(3),
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:'#8E97FE',
+    borderRadius:wp(3)
   },
   arrow: {
     position: 'absolute',

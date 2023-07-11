@@ -116,7 +116,7 @@ const ContentInner = ({navigation, route}: any) => {
             }
           }}
           keyExtractor={(item: any) => item._id}
-          />: showNetworkError?null:<View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'darkBlue'}}> No Data Available </Text></View> )}
+          />: showNetworkError?null:<View style={styles.noData}><Text style={{color:'darkBlue'}}> No Data Available </Text></View> )}
           <View
           style={{
             justifyContent: 'center',
@@ -144,6 +144,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     marginTop: hp(2),
     marginLeft: wp(85),
+  },
+  noData:{
+    marginLeft:wp(25),
+    width:wp(50),
+    height:hp(3),
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:'#8E97FE',
+    borderRadius:wp(3)
   },
   viewMore: {
     width: wp(30),

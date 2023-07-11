@@ -124,7 +124,7 @@ const Content = ({navigation}: any) => {
               );
             }}
             keyExtractor={(item: any) => item.id}
-            />: showNetworkError?null:<View style={{justifyContent:'center',alignItems:'center'}}><Text style={{color:'Black'}}> No Data Available </Text></View> )}
+            />: showNetworkError?null:<View style={styles.noData}><Text style={{color:'Black'}}> No Data Available </Text></View> )}
         </View>
     </View>
   );
@@ -142,6 +142,15 @@ const styles = StyleSheet.create({
     opacity: wp(0.13),
     width: wp(42),
     height: hp(20),
+  },
+  noData:{
+    marginLeft:wp(25),
+    width:wp(50),
+    height:hp(3),
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:'#8E97FE',
+    borderRadius:wp(3)
   },
   title: {
     position: 'absolute',
