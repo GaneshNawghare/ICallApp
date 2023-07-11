@@ -17,6 +17,7 @@ import {
 } from 'react-native-responsive-screen';
 import {getSosInData} from '../../../axios';
 import NetWorkError from '../../assests/svg/NetWorkError';
+import NoDataAvailable from '../../assests/svg/NoDataAvailable'
 
 const Anxiety = ({navigation, route}: any) => {
   const parentId = route.params.id;
@@ -114,7 +115,13 @@ const Anxiety = ({navigation, route}: any) => {
             }
           }}
           keyExtractor={(item: any) => item._id}
-        /> : showNetworkError?null:<View style={styles.noData}><Text style={{color:'Black'}}> No Data Available </Text></View>)}
+        /> : showNetworkError?null:
+        <View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
+          <NoDataAvailable/>
+          <View style={styles.noData}>
+          <Text style={{color:'Black'}}> No Data Available </Text>
+          </View>
+        </View>)}
       </View>
     </View>
   );
@@ -130,7 +137,7 @@ const styles = StyleSheet.create({
     marginVertical: wp(3),
   },
   noData:{
-    marginLeft:wp(25),
+    marginLeft:wp(5),
     width:wp(50),
     height:hp(3),
     justifyContent:'center',

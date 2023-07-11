@@ -18,6 +18,7 @@ import {
 import {WebView} from 'react-native-webview';
 import { getContentInOneData } from '../../../axios';
 import NetWorkError from '../../assests/svg/NetWorkError';
+import NoDataAvailable from '../../assests/svg/NoDataAvailable'
 
 const InnerPageC = ({navigation, route}: any) => {
   const [loading, setLoading] = useState(true);
@@ -119,7 +120,12 @@ const InnerPageC = ({navigation, route}: any) => {
               allowsInlineMediaPlayback={true}
               source={{ html: htmlContent}}
             />
-          </View> : showNetworkError?null:<View style={styles.noData}><Text style={{color:'Black'}}> No Data Available </Text></View>
+          </View> : showNetworkError?null:<View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
+          <NoDataAvailable/>
+          <View style={styles.noData}>
+          <Text style={{color:'Black'}}> No Data Available </Text>
+          </View>
+        </View>
       )}
     </SafeAreaView>
   );
@@ -139,7 +145,7 @@ const styles = StyleSheet.create({
     backgroundColor: `#E1F0E8`,
   },
   noData:{
-    marginLeft:wp(25),
+    marginLeft:wp(5),
     width:wp(50),
     height:hp(3),
     justifyContent:'center',

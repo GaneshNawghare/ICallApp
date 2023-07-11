@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   bottom: {
     width: wp(90),
     height: hp(10),
-    marginTop: hp(83),
+    marginTop: hp(86),
     borderRadius: wp(10),
     alignItems: 'center',
     marginLeft: wp(5),

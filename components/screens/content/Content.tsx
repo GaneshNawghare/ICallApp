@@ -17,6 +17,7 @@ import {
 import LoginArrow from '../../assests/svg/LoginArrow';
 import {getContentData} from '../../../axios';
 import NetWorkError from '../../assests/svg/NetWorkError';
+import NoDataAvailable from '../../assests/svg/NoDataAvailable'
 
 const Content = ({navigation}: any) => {
   const [content, setContent] = useState([]);
@@ -124,7 +125,12 @@ const Content = ({navigation}: any) => {
               );
             }}
             keyExtractor={(item: any) => item.id}
-            />: showNetworkError?null:<View style={styles.noData}><Text style={{color:'Black'}}> No Data Available </Text></View> )}
+            />: showNetworkError?null:<View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
+            <NoDataAvailable/>
+            <View style={styles.noData}>
+            <Text style={{color:'Black'}}> No Data Available </Text>
+            </View>
+          </View>)}
         </View>
     </View>
   );
@@ -144,7 +150,7 @@ const styles = StyleSheet.create({
     height: hp(20),
   },
   noData:{
-    marginLeft:wp(25),
+    marginLeft:wp(5),
     width:wp(50),
     height:hp(3),
     justifyContent:'center',

@@ -21,6 +21,7 @@ import CallLogo from '../../assests/svg/CallLogo';
 import MessageLogo from '../../assests/svg/MessageLogo';
 import HelplineLogo from '../../assests/svg/HelplineLogo';
 import NetWorkError from '../../assests/svg/NetWorkError';
+import NoDataAvailable from '../../assests/svg/NoDataAvailable'
 import {getSosData} from '../../../axios';
 
 const Sos = ({navigation}: any) => {
@@ -158,7 +159,12 @@ const Sos = ({navigation}: any) => {
               );
             }}
             keyExtractor={(item: any) => item.id}
-          />: showNetworkError?null:<View style={styles.noData}><Text style={{color:'Black'}}> No Data Available </Text></View> )}
+          />: showNetworkError?null:<View style={{marginTop:hp(25),justifyContent:'center',alignItems:'center'}}>
+          <NoDataAvailable/>
+          <View style={styles.noData}>
+          <Text style={{color:'Black'}}> No Data Available </Text>
+          </View>
+        </View>)}
       </View>
     </SafeAreaView>
   );
@@ -174,7 +180,7 @@ const styles = StyleSheet.create({
     marginVertical: wp(3),
   },
   noData:{
-    marginLeft:wp(25),
+    marginLeft:wp(5),
     width:wp(50),
     height:hp(3),
     justifyContent:'center',
